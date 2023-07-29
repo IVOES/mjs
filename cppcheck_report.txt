@@ -1,0 +1,2219 @@
+mjs.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 51 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_object.c:206:5: warning: Assignment of function parameter has no effect outside the function. Did you forget dereferencing it? [uselessAssignmentPtrArg]
+clean:
+    ^
+src/common/mg_str.c:75:29: error: Returning pointer to local variable 'p' that will be invalid when returning. [returnDanglingLifetime]
+
+                            ^
+src/common/mg_str.c:75:29: note: Address of variable taken here.
+
+                            ^
+src/common/mg_str.h:14:15: note: Variable created here.
+ * See the License for the specific language governing permissions and
+              ^
+src/common/mg_str.c:75:29: note: Returning pointer to local variable 'p' that will be invalid when returning.
+
+                            ^
+src/mjs_string.c:67:8: error: The address of local variable 'offset' is accessed at non-zero index. [objectIndex]
+      if (p != 0) {
+       ^
+src/mjs_string.c:62:17: note: Address of variable taken here.
+  if (copy) {
+                ^
+src/mjs_string.c:67:8: note: The address of local variable 'offset' is accessed at non-zero index.
+      if (p != 0) {
+       ^
+src/frozen/frozen.c:558:9: warning: snprintf format string requires 0 parameters but 1 is given. [wrongPrintfScanfArgNum]
+  int len = 0;
+        ^
+src/common/cs_file.c:29:9: error: Resource leak: fp [resourceLeak]
+#ifndef EXCLUDE_COMMON
+        ^
+src/mjs_gc.c:136:3: warning: Either the condition 'a->free==NULL' is redundant or there is possible null pointer dereference: (struct gc_cell*)(r). [nullPointerRedundantCheck]
+  }
+  ^
+src/mjs_gc.c:129:15: note: Assuming that condition 'a->free==NULL' is not redundant
+MJS_PRIVATE void *gc_alloc_cell(struct mjs *mjs, struct gc_arena *a) {
+              ^
+src/mjs_gc.c:134:8: note: Assignment 'r=a->free', assigned value is 0
+    b->next = a->blocks;
+       ^
+src/mjs_gc.c:136:3: note: Null pointer dereference
+  }
+  ^
+src/mjs_gc.c:138:13: warning: Either the condition 'a->free==NULL' is redundant or there is possible null pointer dereference: r. [nullPointerRedundantCheck]
+
+            ^
+src/mjs_gc.c:129:15: note: Assuming that condition 'a->free==NULL' is not redundant
+MJS_PRIVATE void *gc_alloc_cell(struct mjs *mjs, struct gc_arena *a) {
+              ^
+src/mjs_gc.c:134:8: note: Assignment 'r=a->free', assigned value is 0
+    b->next = a->blocks;
+       ^
+src/mjs_gc.c:138:13: note: Null pointer dereference
+
+            ^
+src/mjs_gc.c:154:10: warning: Either the condition 'a->free==NULL' is redundant or there is possible null pointer dereference: r. [nullPointerRedundantCheck]
+   * TODO(mkm): minor opt possible since most of the fields
+         ^
+src/mjs_gc.c:129:15: note: Assuming that condition 'a->free==NULL' is not redundant
+MJS_PRIVATE void *gc_alloc_cell(struct mjs *mjs, struct gc_arena *a) {
+              ^
+src/mjs_gc.c:134:8: note: Assignment 'r=a->free', assigned value is 0
+    b->next = a->blocks;
+       ^
+src/mjs_gc.c:154:10: note: Null pointer dereference
+   * TODO(mkm): minor opt possible since most of the fields
+         ^
+src/mjs_string.c:57:42: warning: Possible null pointer dereference: p [nullPointer]
+  m = copy ? &mjs->owned_strings : &mjs->foreign_strings;
+                                         ^
+src/mjs_string.c:273:28: note: Calling function 'mjs_mk_string', 2nd argument 'NULL' value is 0
+  b_ptr = mjs_get_string(mjs, &b, &b_len);
+                           ^
+src/mjs_string.c:57:42: note: Null pointer dereference
+  m = copy ? &mjs->owned_strings : &mjs->foreign_strings;
+                                         ^
+src/frozen/frozen.c:848:49: error: Pointer addition with NULL pointer. [nullPointerArithmetic]
+  snprintf(info.path, sizeof(info.path), "%s[%d]", path, idx);
+                                                ^
+src/frozen/frozen.c:931:67: note: Calling function 'json_unescape', 3rd argument 'NULL' value is 0
+      }
+                                                                  ^
+src/frozen/frozen.c:848:49: note: Null pointer addition
+  snprintf(info.path, sizeof(info.path), "%s[%d]", path, idx);
+                                                ^
+src/mjs_object.c:326:33: portability: Casting between const signed char * and double * which have an incompatible binary data representation. [invalidPointerCast]
+        break;
+                                ^
+src/mjs_object.c:330:24: portability: Casting between const signed char * and float * which have an incompatible binary data representation. [invalidPointerCast]
+        break;
+                       ^
+src/mjs_primitive.c:154:7: style: Redundant initialization for 'ret'. The initialized value is overwritten before it is read. [redundantInitialization]
+  mjs_val_t ret = MJS_UNDEFINED;
+      ^
+src/mjs_primitive.c:151:17: note: ret is initialized
+}
+                ^
+src/mjs_primitive.c:154:7: note: ret is overwritten
+  mjs_val_t ret = MJS_UNDEFINED;
+      ^
+src/mjs_string.c:68:11: style: Redundant initialization for 'tag'. The initialized value is overwritten before it is read. [redundantInitialization]
+        memcpy(s, p, len);
+          ^
+src/mjs_string.c:44:25: note: tag is initialized
+
+                        ^
+src/mjs_string.c:68:11: note: tag is overwritten
+        memcpy(s, p, len);
+          ^
+src/mjs_string.c:276:9: style: Variable 'a_ptr' is reassigned a value before the old one has been used. [redundantAssignment]
+  res = mjs_mk_string(mjs, NULL, a_len + b_len, 1);
+        ^
+src/mjs_string.c:269:9: note: a_ptr is assigned
+  mjs_val_t res;
+        ^
+src/mjs_string.c:276:9: note: a_ptr is overwritten
+  res = mjs_mk_string(mjs, NULL, a_len + b_len, 1);
+        ^
+src/mjs_string.c:277:9: style: Variable 'b_ptr' is reassigned a value before the old one has been used. [redundantAssignment]
+
+        ^
+src/mjs_string.c:270:9: note: b_ptr is assigned
+
+        ^
+src/mjs_string.c:277:9: note: b_ptr is overwritten
+
+        ^
+src/mjs_util.c:319:9: style: Redundant initialization for 'arg'. The initialized value is overwritten before it is read. [redundantInitialization]
+      return 0;
+        ^
+src/mjs_util.c:309:17: note: arg is initialized
+MJS_PRIVATE int mjs_check_arg(struct mjs *mjs, int arg_num,
+                ^
+src/mjs_util.c:319:9: note: arg is overwritten
+      return 0;
+        ^
+src/frozen/frozen.c:557:59: style: Same expression in both branches of ternary operator. [duplicateExpressionTernary]
+int json_vprintf(struct json_out *out, const char *fmt, va_list xap) {
+                                                          ^
+src/frozen/frozen.c:676:76: style: Same expression on both sides of '||' because 'n+1==strlen("%"PRId64)&&strcmp(fmt2,"%"PRId64)==0' and 'n+1==strlen("%"PRIu64)&&strcmp(fmt2,"%"PRIu64)==0' represent the same value. [knownConditionTrueFalse]
+            va_copy(ap_copy, ap);
+                                                                           ^
+src/mjs_json.c:245:3: style:inconclusive: Statements following return, break, continue, goto or throw will never be executed. [unreachableCode]
+
+  ^
+src/frozen/frozen.c:219:7: style: The scope of the variable 'n' can be reduced. [variableScope]
+}
+      ^
+src/frozen/frozen.c:219:18: style: The scope of the variable 'len' can be reduced. [variableScope]
+}
+                 ^
+src/frozen/frozen.c:279:7: style: The scope of the variable 'i' can be reduced. [variableScope]
+      f->cur++;
+      ^
+src/frozen/frozen.c:279:14: style: The scope of the variable 'current_path_len' can be reduced. [variableScope]
+      f->cur++;
+             ^
+src/frozen/frozen.c:280:8: style: The scope of the variable 'buf' can be reduced. [variableScope]
+      EXPECT(f->cur < f->end, JSON_STRING_INCOMPLETE);
+       ^
+src/frozen/frozen.c:949:11: style: The scope of the variable 'i' can be reduced. [variableScope]
+            (*dst = (char *) malloc(unescaped_len + 1)) != NULL) {
+          ^
+src/mjs_exec.c:506:7: style: The scope of the variable 'i' can be reduced. [variableScope]
+static void mjs_apply_(struct mjs *mjs) {
+      ^
+src/mjs_util.c:372:7: style: The scope of the variable 'prev_line_no' can be reduced. [variableScope]
+int mjs_get_lineno_by_offset(struct mjs *mjs, int offset) {
+      ^
+src/mjs_util.c:374:16: style: The scope of the variable 'pe' can be reduced. [variableScope]
+  uint64_t map_len;
+               ^
+src/common/cs_dbg.c:43:62: style:inconclusive: Function 'cs_log_print_prefix' argument 2 names different: declaration 'fname' definition 'file'. [funcArgNamesDifferent]
+#endif
+                                                             ^
+src/common/cs_dbg.h:69:62: note: Function 'cs_log_print_prefix' argument 2 names different: declaration 'fname' definition 'file'.
+ *
+                                                             ^
+src/common/cs_dbg.c:43:62: note: Function 'cs_log_print_prefix' argument 2 names different: declaration 'fname' definition 'file'.
+#endif
+                                                             ^
+src/common/cs_dbg.c:43:72: style:inconclusive: Function 'cs_log_print_prefix' argument 3 names different: declaration 'line' definition 'ln'. [funcArgNamesDifferent]
+#endif
+                                                                       ^
+src/common/cs_dbg.h:69:73: note: Function 'cs_log_print_prefix' argument 3 names different: declaration 'line' definition 'ln'.
+ *
+                                                                        ^
+src/common/cs_dbg.c:43:72: note: Function 'cs_log_print_prefix' argument 3 names different: declaration 'line' definition 'ln'.
+#endif
+                                                                       ^
+src/common/mbuf.c:18:42: style:inconclusive: Function 'mbuf_init' argument 2 names different: declaration 'initial_capacity' definition 'initial_size'. [funcArgNamesDifferent]
+#ifndef EXCLUDE_COMMON
+                                         ^
+src/common/mbuf.h:43:38: note: Function 'mbuf_init' argument 2 names different: declaration 'initial_capacity' definition 'initial_size'.
+#define MBUF_SIZE_MAX_HEADROOM 1024
+                                     ^
+src/common/mbuf.c:18:42: note: Function 'mbuf_init' argument 2 names different: declaration 'initial_capacity' definition 'initial_size'.
+#ifndef EXCLUDE_COMMON
+                                         ^
+src/common/mbuf.c:97:48: style:inconclusive: Function 'mbuf_append' argument 2 names different: declaration 'data' definition 'buf'. [funcArgNamesDifferent]
+      if (off != a->len) {
+                                               ^
+src/common/mbuf.h:53:47: note: Function 'mbuf_append' argument 2 names different: declaration 'data' definition 'buf'.
+
+                                              ^
+src/common/mbuf.c:97:48: note: Function 'mbuf_append' argument 2 names different: declaration 'data' definition 'buf'.
+      if (off != a->len) {
+                                               ^
+src/common/mbuf.c:97:60: style:inconclusive: Function 'mbuf_append' argument 3 names different: declaration 'data_size' definition 'len'. [funcArgNamesDifferent]
+      if (off != a->len) {
+                                                           ^
+src/common/mbuf.h:53:60: note: Function 'mbuf_append' argument 3 names different: declaration 'data_size' definition 'len'.
+
+                                                           ^
+src/common/mbuf.c:97:60: note: Function 'mbuf_append' argument 3 names different: declaration 'data_size' definition 'len'.
+      if (off != a->len) {
+                                                           ^
+src/common/mbuf.c:102:64: style:inconclusive: Function 'mbuf_append_and_free' argument 3 names different: declaration 'data_size' definition 'len'. [funcArgNamesDifferent]
+      a->size = new_size;
+                                                               ^
+src/common/mbuf.h:61:63: note: Function 'mbuf_append_and_free' argument 3 names different: declaration 'data_size' definition 'len'.
+void mbuf_free(struct mbuf *);
+                                                              ^
+src/common/mbuf.c:102:64: note: Function 'mbuf_append_and_free' argument 3 names different: declaration 'data_size' definition 'len'.
+      a->size = new_size;
+                                                               ^
+src/common/mbuf.c:118:42: style:inconclusive: Function 'mbuf_remove' argument 2 names different: declaration 'data_size' definition 'n'. [funcArgNamesDifferent]
+  size_t ret;
+                                         ^
+src/common/mbuf.h:73:40: note: Function 'mbuf_remove' argument 2 names different: declaration 'data_size' definition 'n'.
+ * Returns the number of bytes appended or 0 if out of memory.
+                                       ^
+src/common/mbuf.c:118:42: note: Function 'mbuf_remove' argument 2 names different: declaration 'data_size' definition 'n'.
+  size_t ret;
+                                         ^
+src/common/mg_str.c:27:34: warning: Function 'mg_vcmp' argument order different: declaration 'str2, str1' definition 'str1, str2' [funcArgOrderDifferent]
+
+                                 ^
+src/common/mg_str.h:41:34: note: Function 'mg_vcmp' argument order different: declaration 'str2, str1' definition 'str1, str2'
+ */
+                                 ^
+src/common/mg_str.c:27:34: note: Function 'mg_vcmp' argument order different: declaration 'str2, str1' definition 'str1, str2'
+
+                                 ^
+src/common/mg_str.c:37:38: warning: Function 'mg_vcasecmp' argument order different: declaration 'str2, str1' definition 'str1, str2' [funcArgOrderDifferent]
+  struct mg_str ret = {s, len};
+                                     ^
+src/common/mg_str.h:47:38: note: Function 'mg_vcasecmp' argument order different: declaration 'str2, str1' definition 'str1, str2'
+#define MG_MK_STR_N(str_literal, len) \
+                                     ^
+src/common/mg_str.c:37:38: note: Function 'mg_vcasecmp' argument order different: declaration 'str2, str1' definition 'str1, str2'
+  struct mg_str ret = {s, len};
+                                     ^
+src/common/str_util.c:79:57: style:inconclusive: Function 'c_vsnprintf' argument 3 names different: declaration 'format' definition 'fmt'. [funcArgNamesDifferent]
+
+                                                        ^
+src/common/str_util.h:59:57: note: Function 'c_vsnprintf' argument 3 names different: declaration 'format' definition 'fmt'.
+
+                                                        ^
+src/common/str_util.c:79:57: note: Function 'c_vsnprintf' argument 3 names different: declaration 'format' definition 'fmt'.
+
+                                                        ^
+src/common/str_util.c:217:56: style:inconclusive: Function 'c_snprintf' argument 3 names different: declaration 'format' definition 'fmt'. [funcArgNamesDifferent]
+#endif
+                                                       ^
+src/common/str_util.h:53:56: note: Function 'c_snprintf' argument 3 names different: declaration 'format' definition 'fmt'.
+ */
+                                                       ^
+src/common/str_util.c:217:56: note: Function 'c_snprintf' argument 3 names different: declaration 'format' definition 'fmt'.
+#endif
+                                                       ^
+src/frozen/frozen.c:422:51: style:inconclusive: Function 'json_escape' argument 2 names different: declaration 'str' definition 'p'. [funcArgNamesDifferent]
+      if (json_cur(f) == ',') f->cur++;
+                                                  ^
+src/frozen/frozen.h:227:51: note: Function 'json_escape' argument 2 names different: declaration 'str' definition 'p'.
+int json_scanf_array_elem(const char *s, int len, const char *path, int index,
+                                                  ^
+src/frozen/frozen.c:422:51: note: Function 'json_escape' argument 2 names different: declaration 'str' definition 'p'.
+      if (json_cur(f) == ',') f->cur++;
+                                                  ^
+src/frozen/frozen.c:422:61: style:inconclusive: Function 'json_escape' argument 3 names different: declaration 'str_len' definition 'len'. [funcArgNamesDifferent]
+      if (json_cur(f) == ',') f->cur++;
+                                                            ^
+src/frozen/frozen.h:227:63: note: Function 'json_escape' argument 3 names different: declaration 'str_len' definition 'len'.
+int json_scanf_array_elem(const char *s, int len, const char *path, int index,
+                                                              ^
+src/frozen/frozen.c:422:61: note: Function 'json_escape' argument 3 names different: declaration 'str_len' definition 'len'.
+      if (json_cur(f) == ',') f->cur++;
+                                                            ^
+src/frozen/frozen.c:541:65: style:inconclusive: Function 'json_vprintf' argument 3 names different: declaration 'ap' definition 'xap'. [funcArgNamesDifferent]
+      }
+                                                                ^
+src/frozen/frozen.h:143:62: note: Function 'json_vprintf' argument 3 names different: declaration 'ap' definition 'xap'.
+/*
+                                                             ^
+src/frozen/frozen.c:541:65: note: Function 'json_vprintf' argument 3 names different: declaration 'ap' definition 'xap'.
+      }
+                                                                ^
+src/frozen/frozen.c:826:73: style:inconclusive: Function 'json_scanf_array_elem' argument 4 names different: declaration 'index' definition 'idx'. [funcArgNamesDifferent]
+static void json_scanf_array_elem_cb(void *callback_data, const char *name,
+                                                                        ^
+src/frozen/frozen.h:211:73: note: Function 'json_scanf_array_elem' argument 4 names different: declaration 'index' definition 'idx'.
+ *    - %T: consumes `struct json_token *`, fills it out with matched token.
+                                                                        ^
+src/frozen/frozen.c:826:73: note: Function 'json_scanf_array_elem' argument 4 names different: declaration 'index' definition 'idx'.
+static void json_scanf_array_elem_cb(void *callback_data, const char *name,
+                                                                        ^
+src/frozen/frozen.c:1018:29: style:inconclusive: Function 'json_vscanf' argument 1 names different: declaration 'str' definition 's'. [funcArgNamesDifferent]
+            *((unsigned long *) info->target) = r;
+                            ^
+src/frozen/frozen.h:201:29: note: Function 'json_vscanf' argument 1 names different: declaration 'str' definition 's'.
+ *       Result string is base64-decoded, malloced and NUL-terminated.
+                            ^
+src/frozen/frozen.c:1018:29: note: Function 'json_vscanf' argument 1 names different: declaration 'str' definition 's'.
+            *((unsigned long *) info->target) = r;
+                            ^
+src/frozen/frozen.c:1018:36: style:inconclusive: Function 'json_vscanf' argument 2 names different: declaration 'str_len' definition 'len'. [funcArgNamesDifferent]
+            *((unsigned long *) info->target) = r;
+                                   ^
+src/frozen/frozen.h:201:38: note: Function 'json_vscanf' argument 2 names different: declaration 'str_len' definition 'len'.
+ *       Result string is base64-decoded, malloced and NUL-terminated.
+                                     ^
+src/frozen/frozen.c:1018:36: note: Function 'json_vscanf' argument 2 names different: declaration 'str_len' definition 'len'.
+            *((unsigned long *) info->target) = r;
+                                   ^
+src/frozen/frozen.c:1073:37: style:inconclusive: Function 'json_scanf' argument 2 names different: declaration 'str_len' definition 'len'. [funcArgNamesDifferent]
+      char *pe;
+                                    ^
+src/frozen/frozen.h:200:37: note: Function 'json_scanf' argument 2 names different: declaration 'str_len' definition 'len'.
+ *    - %V: consumes `char **`, `int *`. Expects base64-encoded string.
+                                    ^
+src/frozen/frozen.c:1073:37: note: Function 'json_scanf' argument 2 names different: declaration 'str_len' definition 'len'.
+      char *pe;
+                                    ^
+src/frozen/frozen.c:1106:30: style:inconclusive: Function 'json_fread' argument 1 names different: declaration 'file_name' definition 'path'. [funcArgNamesDifferent]
+    fclose(fp);
+                             ^
+src/frozen/frozen.h:233:30: note: Function 'json_fread' argument 1 names different: declaration 'file_name' definition 'path'.
+ * If destination buffer is too small (or zero-length), result string is not
+                             ^
+src/frozen/frozen.c:1106:30: note: Function 'json_fread' argument 1 names different: declaration 'file_name' definition 'path'.
+    fclose(fp);
+                             ^
+src/mjs_array.c:68:59: style:inconclusive: Function 'mjs_array_length' argument 2 names different: declaration 'arr' definition 'v'. [funcArgNamesDifferent]
+  return res;
+                                                          ^
+src/mjs_array_public.h:20:59: note: Function 'mjs_array_length' argument 2 names different: declaration 'arr' definition 'v'.
+mjs_val_t mjs_mk_array(struct mjs *mjs);
+                                                          ^
+src/mjs_array.c:68:59: note: Function 'mjs_array_length' argument 2 names different: declaration 'arr' definition 'v'.
+  return res;
+                                                          ^
+src/mjs_core.c:321:40: style:inconclusive: Function 'mjs_arg' argument 2 names different: declaration 'n' definition 'arg_index'. [funcArgNamesDifferent]
+  return pos > 0 && pos < top ? top - pos : 0;
+                                       ^
+src/mjs_core_public.h:220:40: note: Function 'mjs_arg' argument 2 names different: declaration 'n' definition 'arg_index'.
+ * When invoked from a cfunction, returns n-th argument to the current JS
+                                       ^
+src/mjs_core.c:321:40: note: Function 'mjs_arg' argument 2 names different: declaration 'n' definition 'arg_index'.
+  return pos > 0 && pos < top ? top - pos : 0;
+                                       ^
+src/mjs_ffi.c:1168:39: style:inconclusive: Function 'dlsym' argument 2 names different: declaration 'symbol' definition 'name'. [funcArgNamesDifferent]
+  return sym;
+                                      ^
+src/mjs_ffi.h:14:0: note: Function 'dlsym' argument 2 names different: declaration 'symbol' definition 'name'.
+extern "C" {
+^
+src/mjs_ffi.c:1168:39: note: Function 'dlsym' argument 2 names different: declaration 'symbol' definition 'name'.
+  return sym;
+                                      ^
+src/mjs_gc.c:366:54: style:inconclusive: Function 'gc_mark' argument 2 names different: declaration 'val' definition 'v'. [funcArgNamesDifferent]
+  memcpy(v, &tmp, sizeof(tmp));
+                                                     ^
+src/mjs_gc.h:38:54: note: Function 'gc_mark' argument 2 names different: declaration 'val' definition 'v'.
+MJS_PRIVATE struct mjs_property *new_property(struct mjs *);
+                                                     ^
+src/mjs_gc.c:366:54: note: Function 'gc_mark' argument 2 names different: declaration 'val' definition 'v'.
+  memcpy(v, &tmp, sizeof(tmp));
+                                                     ^
+src/mjs_gc.c:526:68: style:inconclusive: Function 'gc_check_ptr' argument 2 names different: declaration 'p' definition 'ptr'. [funcArgNamesDifferent]
+  return 1;
+                                                                   ^
+src/mjs_gc.h:51:68: note: Function 'gc_check_ptr' argument 2 names different: declaration 'p' definition 'ptr'.
+MJS_PRIVATE int gc_check_val(struct mjs *mjs, mjs_val_t v);
+                                                                   ^
+src/mjs_gc.c:526:68: note: Function 'gc_check_ptr' argument 2 names different: declaration 'p' definition 'ptr'.
+  return 1;
+                                                                   ^
+src/mjs_object.c:145:26: style:inconclusive: Function 'mjs_set' argument 4 names different: declaration 'len' definition 'name_len'. [funcArgNamesDifferent]
+}
+                         ^
+src/mjs_object_public.h:83:76: note: Function 'mjs_set' argument 4 names different: declaration 'len' definition 'name_len'.
+/*
+                                                                           ^
+src/mjs_object.c:145:26: note: Function 'mjs_set' argument 4 names different: declaration 'len' definition 'name_len'.
+}
+                         ^
+src/mjs_object.c:281:63: style:inconclusive: Function 'mjs_struct_to_obj' argument 3 names different: declaration 'members' definition 'defs'. [funcArgNamesDifferent]
+}
+                                                              ^
+src/mjs_object_public.h:58:63: note: Function 'mjs_struct_to_obj' argument 3 names different: declaration 'members' definition 'defs'.
+
+                                                              ^
+src/mjs_object.c:281:63: note: Function 'mjs_struct_to_obj' argument 3 names different: declaration 'members' definition 'defs'.
+}
+                                                              ^
+src/mjs_primitive.c:23:49: style:inconclusive: Function 'mjs_mk_number' argument 2 names different: declaration 'num' definition 'v'. [funcArgNamesDifferent]
+  return v == MJS_UNDEFINED;
+                                                ^
+src/mjs_primitive_public.h:44:49: note: Function 'mjs_mk_number' argument 2 names different: declaration 'num' definition 'v'.
+int mjs_is_undefined(mjs_val_t v);
+                                                ^
+src/mjs_primitive.c:23:49: note: Function 'mjs_mk_number' argument 2 names different: declaration 'num' definition 'v'.
+  return v == MJS_UNDEFINED;
+                                                ^
+src/mjs_primitive.c:122:49: style:inconclusive: Function 'mjs_mk_foreign' argument 2 names different: declaration 'ptr' definition 'p'. [funcArgNamesDifferent]
+  return get_ptr(v);
+                                                ^
+src/mjs_primitive_public.h:89:49: note: Function 'mjs_mk_foreign' argument 2 names different: declaration 'ptr' definition 'p'.
+ * If you need to store exactly sizeof(void*) bytes of raw data where
+                                                ^
+src/mjs_primitive.c:122:49: note: Function 'mjs_mk_foreign' argument 2 names different: declaration 'ptr' definition 'p'.
+  return get_ptr(v);
+                                                ^
+src/mjs_string.c:42:54: style:inconclusive: Function 'mjs_mk_string' argument 2 names different: declaration 'str' definition 'p'. [funcArgNamesDifferent]
+         t == MJS_TAG_STRING_D;
+                                                     ^
+src/mjs_string_public.h:25:54: note: Function 'mjs_mk_string' argument 2 names different: declaration 'str' definition 'p'.
+ * caller owns the string data, and is responsible for not freeing it while it
+                                                     ^
+src/mjs_string.c:42:54: note: Function 'mjs_mk_string' argument 2 names different: declaration 'str' definition 'p'.
+         t == MJS_TAG_STRING_D;
+                                                     ^
+src/mjs_string.c:131:67: style:inconclusive: Function 'mjs_get_string' argument 3 names different: declaration 'len' definition 'sizep'. [funcArgNamesDifferent]
+}
+                                                                  ^
+src/mjs_string_public.h:47:67: note: Function 'mjs_get_string' argument 3 names different: declaration 'len' definition 'sizep'.
+ * is why a pointer to a `mjs_val_t` is required. It also means that the string
+                                                                  ^
+src/mjs_string.c:131:67: note: Function 'mjs_get_string' argument 3 names different: declaration 'len' definition 'sizep'.
+}
+                                                                  ^
+src/mjs_string.c:206:57: style:inconclusive: Function 'mjs_get_cstring' argument 2 names different: declaration 'v' definition 'value'. [funcArgNamesDifferent]
+  return p;
+                                                        ^
+src/mjs_string_public.h:61:57: note: Function 'mjs_get_cstring' argument 2 names different: declaration 'v' definition 'value'.
+ * be NUL terminated. Out of these, those that don't include embedded NUL chars
+                                                        ^
+src/mjs_string.c:206:57: note: Function 'mjs_get_cstring' argument 2 names different: declaration 'v' definition 'value'.
+  return p;
+                                                        ^
+src/mjs_util.c:83:66: style:inconclusive: Function 'mjs_sprintf' argument 4 names different: declaration 'buflen' definition 'n'. [funcArgNamesDifferent]
+  }
+                                                                 ^
+src/mjs_util_public.h:16:66: note: Function 'mjs_sprintf' argument 4 names different: declaration 'buflen' definition 'n'.
+const char *mjs_typeof(mjs_val_t v);
+                                                                 ^
+src/mjs_util.c:83:66: note: Function 'mjs_sprintf' argument 4 names different: declaration 'buflen' definition 'n'.
+  }
+                                                                 ^
+src/common/cs_dbg.c:74:19: style: Local variable 'fl' shadows outer variable [shadowVariable]
+  ll = (ln < 10000 ? (ln < 1000 ? (ln < 100 ? (ln < 10 ? 1 : 2) : 3) : 4) : 5);
+                  ^
+src/common/cs_dbg.c:46:10: note: Shadowed declaration
+
+         ^
+src/common/cs_dbg.c:74:19: note: Shadow variable
+  ll = (ln < 10000 ? (ln < 1000 ? (ln < 100 ? (ln < 10 ? 1 : 2) : 3) : 4) : 5);
+                  ^
+src/common/str_util.c:289:22: style: Local variable 'hex' shadows outer function [shadowFunction]
+
+                     ^
+src/mjs_string.c:469:12: note: Shadowed declaration
+  SLRE_UNTERM_ESC_SEQ,
+           ^
+src/common/str_util.c:289:22: note: Shadow variable
+
+                     ^
+src/frozen/frozen.c:424:15: style: Local variable 'hex_digits' shadows outer variable [shadowVariable]
+    TRY(json_test_and_skip(f, '}'));
+              ^
+src/mjs_json.c:41:20: note: Shadowed declaration
+  return ret;
+                   ^
+src/frozen/frozen.c:424:15: note: Shadow variable
+    TRY(json_test_and_skip(f, '}'));
+              ^
+src/frozen/frozen.c:575:21: style: Local variable 'hex' shadows outer function [shadowFunction]
+        len += out->printer(out, buf, strlen(buf));
+                    ^
+src/mjs_string.c:469:12: note: Shadowed declaration
+  SLRE_UNTERM_ESC_SEQ,
+           ^
+src/frozen/frozen.c:575:21: note: Shadow variable
+        len += out->printer(out, buf, strlen(buf));
+                    ^
+src/mjs_exec.c:905:21: style: Local variable 'off' shadows outer argument [shadowArgument]
+        break;
+                    ^
+src/mjs_exec.c:547:59: note: Shadowed declaration
+  return handled;
+                                                          ^
+src/mjs_exec.c:905:21: note: Shadow variable
+        break;
+                    ^
+src/mjs_exec.c:925:18: style: Local variable 'scopes_len' shadows outer variable [shadowVariable]
+      }
+                 ^
+src/mjs_exec.c:558:7: note: Shadowed declaration
+  int stack_len = mjs->stack.len;
+      ^
+src/mjs_exec.c:925:18: note: Shadow variable
+      }
+                 ^
+src/mjs_exec.c:937:18: style: Local variable 'scopes_len' shadows outer variable [shadowVariable]
+      } break;
+                 ^
+src/mjs_exec.c:558:7: note: Shadowed declaration
+  int stack_len = mjs->stack.len;
+      ^
+src/mjs_exec.c:937:18: note: Shadow variable
+      } break;
+                 ^
+src/mjs_string.c:153:14: style: Local variable 'v' shadows outer argument [shadowArgument]
+  } else if (tag == MJS_TAG_STRING_O) {
+             ^
+src/mjs_string.c:131:56: note: Shadowed declaration
+}
+                                                       ^
+src/mjs_string.c:153:14: note: Shadow variable
+  } else if (tag == MJS_TAG_STRING_O) {
+             ^
+src/mjs_string.c:185:16: style: Local variable 'v' shadows outer argument [shadowArgument]
+    } else {
+               ^
+src/mjs_string.c:131:56: note: Shadowed declaration
+}
+                                                       ^
+src/mjs_string.c:185:16: note: Shadow variable
+    } else {
+               ^
+src/common/cs_varint.c:35:36: warning:inconclusive: Division of result of sizeof() on pointer type. [divideSizeof]
+    num >>= 7;
+                                   ^
+src/mjs_exec.c:549:23: style: Variable 'prev_opcode' is assigned a value that is never used. [unreadVariable]
+
+                      ^
+src/mjs_exec.c:776:16: style: Variable 'code' is assigned a value that is never used. [unreadVariable]
+        size_t off_ret = call_stack_restore_frame(mjs);
+               ^
+src/mjs_exec.c:830:16: style: Variable 'code' is assigned a value that is never used. [unreadVariable]
+           */
+               ^
+src/frozen/frozen.c:545:3: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+  return len;
+  ^
+src/frozen/frozen.c:556:30: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+int json_vprintf(struct json_out *out, const char *fmt, va_list xap) WEAK;
+                             ^
+src/frozen/frozen.c:562:29: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+
+                            ^
+src/frozen/frozen.c:567:43: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+    } else if (fmt[0] == '%') {
+                                          ^
+src/frozen/frozen.c:568:24: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+      char buf[21];
+                       ^
+src/frozen/frozen.c:570:26: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+
+                         ^
+src/frozen/frozen.c:576:27: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        skip += 2;
+                          ^
+src/frozen/frozen.c:577:41: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+      } else if (fmt[1] == 'z' && fmt[2] == 'u') {
+                                        ^
+src/frozen/frozen.c:587:41: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        const char *str = val ? "true" : "false";
+                                        ^
+src/frozen/frozen.c:588:24: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        len += out->printer(out, str, strlen(str));
+                       ^
+src/frozen/frozen.c:599:31: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        len += out->printer(out, quote, 1);
+                              ^
+src/frozen/frozen.c:602:20: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+#if JSON_ENABLE_BASE64
+                   ^
+src/frozen/frozen.c:636:9: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+         *
+        ^
+src/frozen/frozen.c:660:13: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+           */
+            ^
+src/frozen/frozen.c:678:25: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+            va_end(ap_copy);
+                        ^
+src/frozen/frozen.c:680:25: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        }
+                        ^
+src/frozen/frozen.c:681:25: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        if (pbuf == NULL) {
+                        ^
+src/frozen/frozen.c:686:29: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        /*
+                            ^
+src/frozen/frozen.c:723:3: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+          pbuf = NULL;
+  ^
+src/frozen/frozen.c:636:9: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+         *
+        ^
+src/frozen/frozen.c:637:48: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+         * Currently, %s with strings longer than 20 chars will require
+                                               ^
+src/frozen/frozen.c:638:9: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+         * double-buffering (an auxiliary buffer will be allocated from heap).
+        ^
+src/frozen/frozen.c:660:13: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+           */
+            ^
+src/frozen/frozen.c:661:49: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+          pbuf = NULL;
+                                                ^
+src/frozen/frozen.c:662:13: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+          while (need_len < 0) {
+            ^
+src/mjs_array.c:23:16: error: va_list 'ap' was opened but not closed by va_end(). [va_end_missing]
+  va_start(ap, fmt);
+               ^
+src/common/cs_dbg.c:12:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+ * distributed under the License is distributed on an ""AS IS"" BASIS,
+^
+src/common/cs_dbg.c:22:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+#include <string.h>
+^
+src/common/cs_dbg.c:24:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+#include "common/cs_time.h"
+^
+src/common/cs_dbg.c:30:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+#else
+^
+src/common/cs_dbg.c:42:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+double cs_log_ts WEAK;
+^
+src/common/cs_dbg.c:98:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  }
+^
+src/common/cs_dbg.c:109:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+#endif
+^
+src/common/cs_dbg.c:122:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+}
+^
+src/common/cs_file.c:15:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+ * limitations under the License.
+^
+src/common/mbuf.c:17:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+
+^
+src/common/mbuf.c:24:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+#ifndef MBUF_REALLOC
+^
+src/common/mbuf.c:32:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+void mbuf_init(struct mbuf *mbuf, size_t initial_size) WEAK;
+^
+src/common/mbuf.c:47:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+void mbuf_resize(struct mbuf *a, size_t new_size) WEAK;
+^
+src/common/mbuf.c:52:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+     * In case realloc fails, there's not much we can do, except keep things as
+^
+src/common/mbuf.c:96:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+      a->buf = p;
+^
+src/common/mbuf.c:101:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+      a->len += len;
+^
+src/common/mbuf.c:117:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+size_t mbuf_append_and_free(struct mbuf *a, void *data, size_t len) {
+^
+src/common/mbuf.c:125:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    return len;
+^
+src/common/mbuf.c:130:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+}
+^
+src/common/mg_str.c:11:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+ * Unless required by applicable law or agreed to in writing, software
+^
+src/common/mg_str.c:13:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+^
+src/common/mg_str.c:20:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+#include "common/platform.h"
+^
+src/common/mg_str.c:26:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int mg_ncasecmp(const char *s1, const char *s2, size_t len) WEAK;
+^
+src/common/mg_str.c:36:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+struct mg_str mg_mk_str_n(const char *s, size_t len) {
+^
+src/common/mg_str.c:61:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+static struct mg_str mg_strdup_common(const struct mg_str s,
+^
+src/common/mg_str.c:66:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    if (sc != NULL) {
+^
+src/common/mg_str.c:71:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    }
+^
+src/common/mg_str.c:80:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+
+^
+src/common/mg_str.c:95:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int mg_strcmp(const struct mg_str str1, const struct mg_str str2) WEAK;
+^
+src/common/mg_str.c:109:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+
+^
+src/common/mg_str.c:124:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int mg_strcasecmp(const struct mg_str str1, const struct mg_str str2) WEAK;
+^
+src/common/mg_str.c:133:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  }
+^
+src/common/mg_str.c:146:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+
+^
+src/common/mg_str.c:158:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  return NULL;
+^
+src/common/str_util.c:15:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+ * limitations under the License.
+^
+src/common/str_util.c:78:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  }
+^
+src/common/str_util.c:216:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+        abort();
+^
+src/common/str_util.c:257:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+   * Convert back to Unicode. If doubly-converted string does not match the
+^
+src/common/str_util.c:287:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  return NULL;
+^
+src/common/str_util.c:309:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  }
+^
+src/common/str_util.c:342:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    s++;
+^
+src/common/str_util.c:353:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+static int str_util_lowercase(const char *s) {
+^
+src/common/str_util.c:358:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int mg_ncasecmp(const char *s1, const char *s2, size_t len) {
+^
+src/common/str_util.c:368:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int mg_casecmp(const char *s1, const char *s2) WEAK;
+^
+src/common/str_util.c:418:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  } else if (len >= (int) size) {
+^
+src/common/str_util.c:426:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    }
+^
+src/common/str_util.c:463:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+      /* Value has form "x=y", adjust pointers and lengths */
+^
+src/common/str_util.c:509:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+        const struct mg_str sstr = {str.p + j + len, str.len - j - len};
+^
+src/frozen/frozen.c:421:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+      TRY(json_parse_pair(f));
+^
+src/frozen/frozen.c:450:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+      n += out->printer(out, &specials[ch - '\b'], 1);
+^
+src/frozen/frozen.c:464:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+}
+^
+src/frozen/frozen.c:540:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+        dst[len++] = (c << 6) | d;
+^
+src/frozen/frozen.c:728:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+      len += out->printer(out, quote, 1);
+^
+src/frozen/frozen.c:738:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  }
+^
+src/frozen/frozen.c:766:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    } val;
+^
+src/frozen/frozen.c:776:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  len += json_printf(out, "]", 1);
+^
+src/frozen/frozen.c:788:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  }
+^
+src/frozen/frozen.c:825:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+
+^
+src/frozen/frozen.c:846:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  info.found = 0;
+^
+src/frozen/frozen.c:1017:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+          if (info->fmt[1] == 'l') {
+^
+src/frozen/frozen.c:1072:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    } else if (json_isalpha(fmt[i]) || json_get_utf8_char_len(fmt[i]) > 1) {
+^
+src/frozen/frozen.c:1082:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+      i++;
+^
+src/frozen/frozen.c:1095:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  return result;
+^
+src/frozen/frozen.c:1105:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    fputc('\n', fp);
+^
+src/frozen/frozen.c:1186:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+   * When the mutation position is not yet set, remember each value end.
+^
+src/frozen/frozen.c:1243:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    json_vprintf(out, json_fmt, ap);
+^
+src/frozen/frozen.c:1319:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    case JSON_TYPE_NUMBER:
+^
+src/frozen/frozen.c:1325:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+      if (t->type == JSON_TYPE_STRING) pd->out->printer(pd->out, "\"", 1);
+^
+src/frozen/frozen.c:1410:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    d->handle = (void *) t->ptr;
+^
+src/frozen/frozen.c:1417:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  struct json_token tmpval, *v = val == NULL ? &tmpval : val;
+^
+src/frozen/frozen.c:1435:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+                     int *idx, struct json_token *val) {
+^
+src/frozen/frozen.c:1444:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__;__clang__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+    memcpy(p + old_len, str, len);
+^
+src/mjs_ffi.c:414:13: portability: Assigning an integer to a pointer is not portable. [AssignmentIntegerToAddress]
+      /* do nothing */
+            ^
+src/mjs_ffi.c:417:13: portability: Assigning an integer to a pointer is not portable. [AssignmentIntegerToAddress]
+      ret.w = mjs_get_int(mjs, res);
+            ^
+src/common/str_util.c:373:3: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+int mg_asprintf(char **buf, size_t size, const char *fmt, ...) WEAK;
+  ^
+src/common/str_util.c:374:36: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+int mg_asprintf(char **buf, size_t size, const char *fmt, ...) {
+                                   ^
+src/common/str_util.c:375:3: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+  int ret;
+  ^
+src/common/str_util.c:408:7: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+      len = vsnprintf(*buf, size - 1, fmt, ap_copy);
+      ^
+src/common/str_util.c:409:43: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+      va_end(ap_copy);
+                                          ^
+src/common/str_util.c:410:7: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+    }
+      ^
+mjs_no_common.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 16 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_exec.c:903:21: style: Local variable 'off' shadows outer argument [shadowArgument]
+        mjs_push(mjs, a);
+                    ^
+src/mjs_exec.c:547:59: note: Shadowed declaration
+  return handled;
+                                                          ^
+src/mjs_exec.c:903:21: note: Shadow variable
+        mjs_push(mjs, a);
+                    ^
+src/mjs_exec.c:923:18: style: Local variable 'scopes_len' shadows outer variable [shadowVariable]
+        i += l1 + l2;
+                 ^
+src/mjs_exec.c:558:7: note: Shadowed declaration
+  int stack_len = mjs->stack.len;
+      ^
+src/mjs_exec.c:923:18: note: Shadow variable
+        i += l1 + l2;
+                 ^
+src/mjs_exec.c:935:18: style: Local variable 'scopes_len' shadows outer variable [shadowVariable]
+          mjs_set_errorf(mjs, MJS_SYNTAX_ERROR, "misplaced 'continue'");
+                 ^
+src/mjs_exec.c:558:7: note: Shadowed declaration
+  int stack_len = mjs->stack.len;
+      ^
+src/mjs_exec.c:935:18: note: Shadow variable
+          mjs_set_errorf(mjs, MJS_SYNTAX_ERROR, "misplaced 'continue'");
+                 ^
+src/mjs_exec.c:774:16: style: Variable 'code' is assigned a value that is never used. [unreadVariable]
+         * convert it to the local offset
+               ^
+src/mjs_exec.c:828:16: style: Variable 'code' is assigned a value that is never used. [unreadVariable]
+           * Function offset is a global bcode offset, so we need to convert it
+               ^
+src/mjs_parser.c:976:47: warning: Either the condition 'path!=NULL' is redundant or there is possible null pointer dereference: path. [nullPointerRedundantCheck]
+              sizeof(mjs_header_item_t) * MJS_HDR_ITEMS_CNT);
+                                              ^
+src/mjs_exec.c:1002:30: note: Assuming that condition 'path!=NULL' is not redundant
+  if (cs_log_level >= LL_VERBOSE_DEBUG) mjs_dump(mjs, 1);
+                             ^
+src/mjs_exec.c:995:26: note: Calling function 'mjs_parse', 1st argument 'path' value is 0
+MJS_PRIVATE mjs_err_t mjs_exec_internal(struct mjs *mjs, const char *path,
+                         ^
+src/mjs_parser.c:976:47: note: Null pointer dereference
+              sizeof(mjs_header_item_t) * MJS_HDR_ITEMS_CNT);
+                                              ^
+src/common/cs_dbg.c:89:19: style: Local variable 'fl' shadows outer variable [shadowVariable]
+    struct mg_str fl = mg_mk_str(s_file_level), ps = MG_MK_STR_N(prefix, pl);
+                  ^
+src/common/cs_dbg.c:61:10: note: Shadowed declaration
+  size_t fl = 0, ll = 0, pl = 0;
+         ^
+src/common/cs_dbg.c:89:19: note: Shadow variable
+    struct mg_str fl = mg_mk_str(s_file_level), ps = MG_MK_STR_N(prefix, pl);
+                  ^
+src/common/cs_file.c:44:9: error: Resource leak: fp [resourceLeak]
+        return NULL;
+        ^
+src/common/cs_varint.c:50:36: warning:inconclusive: Division of result of sizeof() on pointer type. [divideSizeof]
+    if (i == buf_size || i == (8 * sizeof(*num) / 7 + 1)) return false;
+                                   ^
+src/common/platforms/arm/arm_exc.c:126:7: warning: %u in format string (no. 1) requires 'unsigned int' but the argument type is 'signed int'. [invalidPrintfArgType_uint]
+      sprintf(buf, "IRQ%u", isr_no - 16);
+      ^
+src/common/platforms/esp/stub_flasher.c:574:37: error: Subtracting pointers that point to different objects [comparePointers]
+  memset(&_bss_start, 0, (&_bss_end - &_bss_start));
+                                    ^
+src/common/platforms/esp/stub_flasher.c:54:29: note: Variable declared here.
+extern uint32_t _bss_start, _bss_end;
+                            ^
+src/common/platforms/esp/stub_flasher.c:574:27: note: Address of variable taken here.
+  memset(&_bss_start, 0, (&_bss_end - &_bss_start));
+                          ^
+src/common/platforms/esp/stub_flasher.c:54:17: note: Variable declared here.
+extern uint32_t _bss_start, _bss_end;
+                ^
+src/common/platforms/esp/stub_flasher.c:574:39: note: Address of variable taken here.
+  memset(&_bss_start, 0, (&_bss_end - &_bss_start));
+                                      ^
+src/common/platforms/esp/stub_flasher.c:574:37: note: Subtracting pointers that point to different objects
+  memset(&_bss_start, 0, (&_bss_end - &_bss_start));
+                                    ^
+src/common/platforms/esp/stub_flasher.c:520:20: style: Variable 'old_div' is assigned a value that is never used. [unreadVariable]
+  uint32_t old_div = 0;
+                   ^
+src/common/platforms/esp/stub_flasher.c:523:13: style: Variable 'old_div' is assigned a value that is never used. [unreadVariable]
+    old_div = set_baud_rate(0, old_baud_rate, new_baud_rate);
+            ^
+src/common/platforms/esp31/rom/notes.c:36:17: style:inconclusive: Boolean expression '(BIT(5)|BIT(4))==(BIT(5)|BIT(4))' is used in bitwise operation. Did you mean '&&'? [bitwiseOnBoolean]
+  if (boot_mode & (BIT(5) | BIT(4)) == (BIT(5) | BIT(4)) || boot_mode == 24 || boot_mode == 26) {
+                ^
+src/common/platforms/esp31/rom/notes.c:39:17: style:inconclusive: Boolean expression '(BIT(5)|BIT(4))==BIT(5)' is used in bitwise operation. Did you mean '&&'? [bitwiseOnBoolean]
+  if (boot_mode & (BIT(5) | BIT(4)) == BIT(5)) {
+                ^
+src/common/platforms/esp31/rom/notes.c:48:17: style:inconclusive: Boolean expression '(BIT(5)|BIT(3))==0' is used in bitwise operation. Did you mean '&&'? [bitwiseOnBoolean]
+  if (boot_mode & (BIT(5) | BIT(3)) == 0) {
+                ^
+src/common/platforms/esp31/rom/notes.c:36:6: style: Suspicious condition (bitwise operator + comparison); Clarify expression with parentheses. [clarifyCondition]
+  if (boot_mode & (BIT(5) | BIT(4)) == (BIT(5) | BIT(4)) || boot_mode == 24 || boot_mode == 26) {
+     ^
+src/common/platforms/esp31/rom/notes.c:36:17: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
+  if (boot_mode & (BIT(5) | BIT(4)) == (BIT(5) | BIT(4)) || boot_mode == 24 || boot_mode == 26) {
+                ^
+src/common/platforms/esp31/rom/notes.c:39:6: style: Suspicious condition (bitwise operator + comparison); Clarify expression with parentheses. [clarifyCondition]
+  if (boot_mode & (BIT(5) | BIT(4)) == BIT(5)) {
+     ^
+src/common/platforms/esp31/rom/notes.c:39:17: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
+  if (boot_mode & (BIT(5) | BIT(4)) == BIT(5)) {
+                ^
+src/common/platforms/esp31/rom/notes.c:48:6: style: Suspicious condition (bitwise operator + comparison); Clarify expression with parentheses. [clarifyCondition]
+  if (boot_mode & (BIT(5) | BIT(3)) == 0) {
+     ^
+src/common/platforms/esp31/rom/notes.c:48:17: style: Boolean result is used in bitwise operation. Clarify expression with parentheses. [clarifyCondition]
+  if (boot_mode & (BIT(5) | BIT(3)) == 0) {
+                ^
+src/common/platforms/esp31/rom/notes.c:89:12: style: struct member 'uartdev::ud4' is never used. [unusedStructMember]
+  uint32_t ud4;
+           ^
+src/common/platforms/esp31/rom/notes.c:90:12: style: struct member 'uartdev::ud8' is never used. [unusedStructMember]
+  uint32_t ud8;
+           ^
+src/common/platforms/esp31/rom/notes.c:91:12: style: struct member 'uartdev::ud12' is never used. [unusedStructMember]
+  uint32_t ud12;
+           ^
+src/common/platforms/esp31/rom/notes.c:92:12: style: struct member 'uartdev::ud16' is never used. [unusedStructMember]
+  uint32_t ud16;
+           ^
+src/common/platforms/esp31/rom/notes.c:93:12: style: struct member 'uartdev::ud20' is never used. [unusedStructMember]
+  uint32_t ud20;
+           ^
+src/common/platforms/esp31/rom/notes.c:94:11: style: struct member 'uartdev::ud24' is never used. [unusedStructMember]
+  uint8_t ud24;
+          ^
+src/common/platforms/esp31/rom/notes.c:95:11: style: struct member 'uartdev::ud25' is never used. [unusedStructMember]
+  uint8_t ud25;
+          ^
+src/common/platforms/esp31/rom/notes.c:96:12: style: struct member 'uartdev::ud28' is never used. [unusedStructMember]
+  uint32_t ud28;
+           ^
+src/common/platforms/esp31/rom/notes.c:97:12: style: struct member 'uartdev::ud32' is never used. [unusedStructMember]
+  uint32_t ud32;
+           ^
+src/common/platforms/esp31/rom/notes.c:98:12: style: struct member 'uartdev::ud36' is never used. [unusedStructMember]
+  uint32_t ud36;
+           ^
+src/common/platforms/esp31/rom/notes.c:99:11: style: struct member 'uartdev::ud40' is never used. [unusedStructMember]
+  uint8_t ud40;
+          ^
+src/common/platforms/esp31/rom/notes.c:100:12: style: struct member 'uartdev::ud48' is never used. [unusedStructMember]
+  uint32_t ud48;
+           ^
+src/common/platforms/esp31/rom/notes.c:101:12: style: struct member 'uartdev::ud52' is never used. [unusedStructMember]
+  uint32_t ud52;
+           ^
+src/common/platforms/esp32/stubs/led.c:22:44: portability: Shifting signed 32-bit value by 31 bits is implementation-defined behaviour. See condition at line 21. [shiftTooManyBitsSigned]
+    WRITE_PERI_REG(GPIO_ENABLE_W1TS_REG, 1 << io);
+                                           ^
+src/common/platforms/esp32/stubs/led.c:21:10: note: Assuming that condition 'io<32' is not redundant
+  if (io < 32) {
+         ^
+src/common/platforms/esp32/stubs/led.c:22:44: note: Shift
+    WRITE_PERI_REG(GPIO_ENABLE_W1TS_REG, 1 << io);
+                                           ^
+src/common/platforms/esp32/stubs/led.c:30:41: portability: Shifting signed 32-bit value by 31 bits is implementation-defined behaviour. See condition at line 29. [shiftTooManyBitsSigned]
+    WRITE_PERI_REG(GPIO_OUT_W1TS_REG, 1 << io);
+                                        ^
+src/common/platforms/esp32/stubs/led.c:29:10: note: Assuming that condition 'io<32' is not redundant
+  if (io < 32) {
+         ^
+src/common/platforms/esp32/stubs/led.c:30:41: note: Shift
+    WRITE_PERI_REG(GPIO_OUT_W1TS_REG, 1 << io);
+                                        ^
+src/common/platforms/esp32/stubs/led.c:38:41: portability: Shifting signed 32-bit value by 31 bits is implementation-defined behaviour. See condition at line 37. [shiftTooManyBitsSigned]
+    WRITE_PERI_REG(GPIO_OUT_W1TC_REG, 1 << io);
+                                        ^
+src/common/platforms/esp32/stubs/led.c:37:10: note: Assuming that condition 'io<32' is not redundant
+  if (io < 32) {
+         ^
+src/common/platforms/esp32/stubs/led.c:38:41: note: Shift
+    WRITE_PERI_REG(GPIO_OUT_W1TC_REG, 1 << io);
+                                        ^
+src/common/platforms/esp32/stubs/led.c:22:44: warning: Either the condition 'io<32' is redundant or there is signed integer overflow for expression '1<<io'. [integerOverflowCond]
+    WRITE_PERI_REG(GPIO_ENABLE_W1TS_REG, 1 << io);
+                                           ^
+src/common/platforms/esp32/stubs/led.c:21:10: note: Assuming that condition 'io<32' is not redundant
+  if (io < 32) {
+         ^
+src/common/platforms/esp32/stubs/led.c:22:44: note: Integer overflow
+    WRITE_PERI_REG(GPIO_ENABLE_W1TS_REG, 1 << io);
+                                           ^
+src/common/platforms/esp32/stubs/led.c:30:41: warning: Either the condition 'io<32' is redundant or there is signed integer overflow for expression '1<<io'. [integerOverflowCond]
+    WRITE_PERI_REG(GPIO_OUT_W1TS_REG, 1 << io);
+                                        ^
+src/common/platforms/esp32/stubs/led.c:29:10: note: Assuming that condition 'io<32' is not redundant
+  if (io < 32) {
+         ^
+src/common/platforms/esp32/stubs/led.c:30:41: note: Integer overflow
+    WRITE_PERI_REG(GPIO_OUT_W1TS_REG, 1 << io);
+                                        ^
+src/common/platforms/esp32/stubs/led.c:38:41: warning: Either the condition 'io<32' is redundant or there is signed integer overflow for expression '1<<io'. [integerOverflowCond]
+    WRITE_PERI_REG(GPIO_OUT_W1TC_REG, 1 << io);
+                                        ^
+src/common/platforms/esp32/stubs/led.c:37:10: note: Assuming that condition 'io<32' is not redundant
+  if (io < 32) {
+         ^
+src/common/platforms/esp32/stubs/led.c:38:41: note: Integer overflow
+    WRITE_PERI_REG(GPIO_OUT_W1TC_REG, 1 << io);
+                                        ^
+src/common/platforms/esp32/stubs/stub_hello.c:36:37: error: Subtracting pointers that point to different objects [comparePointers]
+  memset(&_bss_start, 0, (&_bss_end - &_bss_start));
+                                    ^
+src/common/platforms/esp32/stubs/stub_hello.c:31:29: note: Variable declared here.
+extern uint32_t _bss_start, _bss_end;
+                            ^
+src/common/platforms/esp32/stubs/stub_hello.c:36:27: note: Address of variable taken here.
+  memset(&_bss_start, 0, (&_bss_end - &_bss_start));
+                          ^
+src/common/platforms/esp32/stubs/stub_hello.c:31:17: note: Variable declared here.
+extern uint32_t _bss_start, _bss_end;
+                ^
+src/common/platforms/esp32/stubs/stub_hello.c:36:39: note: Address of variable taken here.
+  memset(&_bss_start, 0, (&_bss_end - &_bss_start));
+                                      ^
+src/common/platforms/esp32/stubs/stub_hello.c:36:37: note: Subtracting pointers that point to different objects
+  memset(&_bss_start, 0, (&_bss_end - &_bss_start));
+                                    ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2.c:228:3: warning:inconclusive: The buffer 'name' may not be null-terminated after the call to strncpy(). [terminateStrncpy]
+  strncpy(name, sect->name, 31);
+  ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2.c:236:3: warning: %d in format string (no. 4) requires 'int' but the argument type is 'unsigned int'. [invalidPrintfArgType_sint]
+  fprintf(outfile, "\r\nconst uint32 %s_addr = 0x%08x;\r\nconst uint32 %s_len = %d;\r\nconst uint8  %s_data[] = {",
+  ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2.c:57:13: style: The scope of the variable 'args' can be reduced. [variableScope]
+    va_list args;
+            ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2.c:68:13: style: The scope of the variable 'args' can be reduced. [variableScope]
+    va_list args;
+            ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2_elf.c:31:42: style:inconclusive: Function 'GetElfSection' argument 1 names different: declaration 'e_object' definition 'elf'. [funcArgNamesDifferent]
+MyElf_Section* GetElfSection(MyElf_File *elf, char *name) {
+                                         ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2_elf.h:45:42: note: Function 'GetElfSection' argument 1 names different: declaration 'e_object' definition 'elf'.
+MyElf_Section* GetElfSection(MyElf_File *e_object, char *name);
+                                         ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2_elf.c:31:42: note: Function 'GetElfSection' argument 1 names different: declaration 'e_object' definition 'elf'.
+MyElf_Section* GetElfSection(MyElf_File *elf, char *name) {
+                                         ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2_elf.c:50:46: style:inconclusive: Function 'GetElfSectionData' argument 1 names different: declaration 'e_object' definition 'elf'. [funcArgNamesDifferent]
+unsigned char* GetElfSectionData(MyElf_File *elf, MyElf_Section *section) {
+                                             ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2_elf.h:46:46: note: Function 'GetElfSectionData' argument 1 names different: declaration 'e_object' definition 'elf'.
+unsigned char* GetElfSectionData(MyElf_File *e_object, MyElf_Section *section);
+                                             ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2_elf.c:50:46: note: Function 'GetElfSectionData' argument 1 names different: declaration 'e_object' definition 'elf'.
+unsigned char* GetElfSectionData(MyElf_File *elf, MyElf_Section *section) {
+                                             ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2_elf.c:175:28: style:inconclusive: Function 'UnloadElf' argument 1 names different: declaration 'e_object' definition 'elf'. [funcArgNamesDifferent]
+void UnloadElf(MyElf_File *elf) {
+                           ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2_elf.h:44:28: note: Function 'UnloadElf' argument 1 names different: declaration 'e_object' definition 'elf'.
+void UnloadElf(MyElf_File *e_object);
+                           ^
+src/common/platforms/esp8266/rboot/esptool2/esptool2_elf.c:175:28: note: Function 'UnloadElf' argument 1 names different: declaration 'e_object' definition 'elf'.
+void UnloadElf(MyElf_File *elf) {
+                           ^
+src/common/platforms/esp8266/rboot/rboot/appcode/rboot-api.c:43:18: warning:inconclusive: Division of result of sizeof() on pointer type. [divideSizeof]
+ uint32_t buffer[sizeof(*conf) / sizeof(uint32_t) + 1];
+                 ^
+src/common/platforms/esp8266/rboot/rboot/rboot-stage2a.c:58:2: portability: Returning an integer in a function with pointer return type is not portable. [CastIntegerToAddressAtReturn]
+ return usercode;
+ ^
+src/common/platforms/esp8266/rboot/rboot/rboot-stage2a.c:18:9: style: The scope of the variable 'writepos' can be reduced. [variableScope]
+ uint8 *writepos;
+        ^
+src/common/platforms/esp8266/rboot/rboot/rboot-stage2a.c:19:9: style: The scope of the variable 'remaining' can be reduced. [variableScope]
+ uint32 remaining;
+        ^
+src/common/platforms/esp8266/rboot/rboot/rboot-stage2a.c:20:12: style: Unused variable: usercode [unusedVariable]
+ usercode* usercode;
+           ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:216:9: style:inconclusive: Found duplicate branches for 'if' and 'else'. [duplicateBranch]
+ } else if (flag == 2) {
+        ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:219:4: note: Found duplicate branches for 'if' and 'else'.
+ } else {
+   ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:216:9: note: Found duplicate branches for 'if' and 'else'.
+ } else if (flag == 2) {
+        ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:78:12: style: Variable 'writepos' is assigned a value that is never used. [unreadVariable]
+  writepos = section->address;
+           ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:90:13: style: Variable 'writepos' is assigned a value that is never used. [unreadVariable]
+   writepos += readlen;
+            ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:212:13: style: Variable 'flashsize' is assigned a value that is never used. [unreadVariable]
+  flashsize = 0x80000;
+            ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:215:13: style: Variable 'flashsize' is assigned a value that is never used. [unreadVariable]
+  flashsize = 0x40000;
+            ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:218:13: style: Variable 'flashsize' is assigned a value that is never used. [unreadVariable]
+  flashsize = 0x100000;
+            ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:239:13: style: Variable 'flashsize' is assigned a value that is never used. [unreadVariable]
+  flashsize = 0x100000; // limit to 8Mbit
+            ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:223:14: style: Variable 'flashsize' is assigned a value that is never used. [unreadVariable]
+   flashsize = 0x200000;
+             ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:226:14: style: Variable 'flashsize' is assigned a value that is never used. [unreadVariable]
+   flashsize = 0x400000;
+             ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:229:14: style: Variable 'flashsize' is assigned a value that is never used. [unreadVariable]
+   flashsize = 0x800000;
+             ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:232:14: style: Variable 'flashsize' is assigned a value that is never used. [unreadVariable]
+   flashsize = 0x1000000;
+             ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:235:14: style: Variable 'flashsize' is assigned a value that is never used. [unreadVariable]
+   flashsize = 0x100000;  // assume 8Mbit
+             ^
+src/common/platforms/esp8266/rboot/rboot/rboot.c:401:11: style: The scope of the variable 'loader' can be reduced. [variableScope]
+ stage2a *loader;
+          ^
+src/common/platforms/lwip/mg_lwip_net_if.c:139:0: information: Skipping configuration 'MG_ENABLE_NET_IF_LWIP_LOW_LEVEL;ipX_2_ip' since the value of 'ipX_2_ip' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  DBG(("%p connect to %s:%u = %d", nc, IPADDR_NTOA(ipX_2_ip(&tpcb->remote_ip)),
+^
+src/common/platforms/lwip/mg_lwip_net_if.c:380:0: information: Skipping configuration 'MG_ENABLE_NET_IF_LWIP_LOW_LEVEL;ipX_2_ip' since the value of 'ipX_2_ip' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+  SET_ADDR(&sa, &tpcb->remote_ip);
+^
+src/common/platforms/lwip/mg_lwip_net_if.c:391:0: information: Skipping configuration 'MG_ENABLE_NET_IF_LWIP_LOW_LEVEL;ipX_2_ip' since the value of 'ipX_2_ip' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+       IPADDR_NTOA(ipX_2_ip(&newtpcb->remote_ip)), newtpcb->remote_port));
+^
+src/common/platforms/lwip/mg_lwip_net_if.c:701:0: information: Skipping configuration 'MG_ENABLE_NET_IF_LWIP_LOW_LEVEL;ipX_2_ip' since the value of 'ipX_2_ip' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+      SET_ADDR(sa, &upcb->local_ip);
+^
+src/common/platforms/lwip/mg_lwip_net_if.c:709:0: information: Skipping configuration 'MG_ENABLE_NET_IF_LWIP_LOW_LEVEL;ipX_2_ip' since the value of 'ipX_2_ip' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+      SET_ADDR(sa, &tpcb->local_ip);
+^
+src/common/platforms/simplelink/sl_fs_slfs.c:226:14: style: Variable 's->st_mode' is reassigned a value before the old one has been used. [redundantAssignment]
+  s->st_mode = S_IFREG | 0666;
+             ^
+src/common/platforms/simplelink/sl_fs_slfs.c:225:14: note: s->st_mode is assigned
+  s->st_mode = 0666;
+             ^
+src/common/platforms/simplelink/sl_fs_slfs.c:226:14: note: s->st_mode is overwritten
+  s->st_mode = S_IFREG | 0666;
+             ^
+src/common/platforms/simplelink/sl_net_if.c:342:7: style: Redundant initialization for 'now'. The initialized value is overwritten before it is read. [redundantInitialization]
+  now = mg_time();
+      ^
+src/common/platforms/simplelink/sl_net_if.c:277:14: note: now is initialized
+  double now = mg_time();
+             ^
+src/common/platforms/simplelink/sl_net_if.c:342:7: note: now is overwritten
+  now = mg_time();
+      ^
+src/common/platforms/simplelink/sl_net_if.c:391:39: style: Clarify calculation precedence for '&' and '?'. [clarifyCalculation]
+      int res = (nc->flags & MG_F_UDP ? mg_sl_if_listen_udp(nc, &nc->sa)
+                                      ^
+src/common/platforms/simplelink/sl_socket.c:50:7: warning: %lu in format string (no. 1) requires 'unsigned long *' but the argument type is 'unsigned int *'. [invalidScanfArgType_int]
+  if (sscanf(src, "%lu.%lu.%lu.%lu", &a0, &a1, &a2, &a3) != 4) {
+      ^
+src/common/platforms/simplelink/sl_socket.c:50:7: warning: %lu in format string (no. 2) requires 'unsigned long *' but the argument type is 'unsigned int *'. [invalidScanfArgType_int]
+  if (sscanf(src, "%lu.%lu.%lu.%lu", &a0, &a1, &a2, &a3) != 4) {
+      ^
+src/common/platforms/simplelink/sl_socket.c:50:7: warning: %lu in format string (no. 3) requires 'unsigned long *' but the argument type is 'unsigned int *'. [invalidScanfArgType_int]
+  if (sscanf(src, "%lu.%lu.%lu.%lu", &a0, &a1, &a2, &a3) != 4) {
+      ^
+src/common/platforms/simplelink/sl_socket.c:50:7: warning: %lu in format string (no. 4) requires 'unsigned long *' but the argument type is 'unsigned int *'. [invalidScanfArgType_int]
+  if (sscanf(src, "%lu.%lu.%lu.%lu", &a0, &a1, &a2, &a3) != 4) {
+      ^
+src/common/test_util.c:35:20: style: Array index 'i' is used before limits check. [arrayIndexThenCheck]
+  for (i = j = 0; s[i] != '\0' && i < n; i++) {
+                   ^
+src/frozen/frozen.c:574:9: warning: snprintf format string requires 0 parameters but 1 is given. [wrongPrintfScanfArgNum]
+        snprintf(buf, sizeof(buf), fmt2, val);
+        ^
+src/frozen/frozen.c:864:49: error: Pointer addition with NULL pointer. [nullPointerArithmetic]
+  char *send = (char *) src + slen, *dend = dst + dlen, *orig_dst = dst, *p;
+                                                ^
+src/frozen/frozen.c:947:67: note: Calling function 'json_unescape', 3rd argument 'NULL' value is 0
+        int unescaped_len = json_unescape(token->ptr, token->len, NULL, 0);
+                                                                  ^
+src/frozen/frozen.c:864:49: note: Null pointer addition
+  char *send = (char *) src + slen, *dend = dst + dlen, *orig_dst = dst, *p;
+                                                ^
+src/frozen/frozen.c:573:59: style: Same expression in both branches of ternary operator. [duplicateExpressionTernary]
+        const char *fmt2 = fmt[3] == 'u' ? "%" UINT64_FMT : "%" INT64_FMT;
+                                                          ^
+src/frozen/frozen.c:692:76: style: Same expression on both sides of '||' because 'n+1==strlen("%"PRId64)&&strcmp(fmt2,"%"PRId64)==0' and 'n+1==strlen("%"PRIu64)&&strcmp(fmt2,"%"PRIu64)==0' represent the same value. [knownConditionTrueFalse]
+        if ((n + 1 == strlen("%" PRId64) && strcmp(fmt2, "%" PRId64) == 0) ||
+                                                                           ^
+src/frozen/frozen.c:235:7: style: The scope of the variable 'n' can be reduced. [variableScope]
+  int n, ch = 0, len = 0;
+      ^
+src/frozen/frozen.c:235:18: style: The scope of the variable 'len' can be reduced. [variableScope]
+  int n, ch = 0, len = 0;
+                 ^
+src/frozen/frozen.c:295:7: style: The scope of the variable 'i' can be reduced. [variableScope]
+  int i = 0, current_path_len;
+      ^
+src/frozen/frozen.c:295:14: style: The scope of the variable 'current_path_len' can be reduced. [variableScope]
+  int i = 0, current_path_len;
+             ^
+src/frozen/frozen.c:296:8: style: The scope of the variable 'buf' can be reduced. [variableScope]
+  char buf[20];
+       ^
+src/frozen/frozen.c:965:11: style: The scope of the variable 'i' can be reduced. [variableScope]
+      int i, len = token->len / 2;
+          ^
+src/frozen/frozen.c:438:51: style:inconclusive: Function 'json_escape' argument 2 names different: declaration 'str' definition 'p'. [funcArgNamesDifferent]
+int json_escape(struct json_out *out, const char *p, size_t len) {
+                                                  ^
+src/frozen/frozen.h:243:51: note: Function 'json_escape' argument 2 names different: declaration 'str' definition 'p'.
+int json_escape(struct json_out *out, const char *str, size_t str_len);
+                                                  ^
+src/frozen/frozen.c:438:51: note: Function 'json_escape' argument 2 names different: declaration 'str' definition 'p'.
+int json_escape(struct json_out *out, const char *p, size_t len) {
+                                                  ^
+src/frozen/frozen.c:438:61: style:inconclusive: Function 'json_escape' argument 3 names different: declaration 'str_len' definition 'len'. [funcArgNamesDifferent]
+int json_escape(struct json_out *out, const char *p, size_t len) {
+                                                            ^
+src/frozen/frozen.h:243:63: note: Function 'json_escape' argument 3 names different: declaration 'str_len' definition 'len'.
+int json_escape(struct json_out *out, const char *str, size_t str_len);
+                                                              ^
+src/frozen/frozen.c:438:61: note: Function 'json_escape' argument 3 names different: declaration 'str_len' definition 'len'.
+int json_escape(struct json_out *out, const char *p, size_t len) {
+                                                            ^
+src/frozen/frozen.c:557:65: style:inconclusive: Function 'json_vprintf' argument 3 names different: declaration 'ap' definition 'xap'. [funcArgNamesDifferent]
+int json_vprintf(struct json_out *out, const char *fmt, va_list xap) {
+                                                                ^
+src/frozen/frozen.h:159:62: note: Function 'json_vprintf' argument 3 names different: declaration 'ap' definition 'xap'.
+int json_vprintf(struct json_out *, const char *fmt, va_list ap);
+                                                             ^
+src/frozen/frozen.c:557:65: note: Function 'json_vprintf' argument 3 names different: declaration 'ap' definition 'xap'.
+int json_vprintf(struct json_out *out, const char *fmt, va_list xap) {
+                                                                ^
+src/frozen/frozen.c:842:73: style:inconclusive: Function 'json_scanf_array_elem' argument 4 names different: declaration 'index' definition 'idx'. [funcArgNamesDifferent]
+int json_scanf_array_elem(const char *s, int len, const char *path, int idx,
+                                                                        ^
+src/frozen/frozen.h:227:73: note: Function 'json_scanf_array_elem' argument 4 names different: declaration 'index' definition 'idx'.
+int json_scanf_array_elem(const char *s, int len, const char *path, int index,
+                                                                        ^
+src/frozen/frozen.c:842:73: note: Function 'json_scanf_array_elem' argument 4 names different: declaration 'index' definition 'idx'.
+int json_scanf_array_elem(const char *s, int len, const char *path, int idx,
+                                                                        ^
+src/frozen/frozen.c:1034:29: style:inconclusive: Function 'json_vscanf' argument 1 names different: declaration 'str' definition 's'. [funcArgNamesDifferent]
+int json_vscanf(const char *s, int len, const char *fmt, va_list ap) {
+                            ^
+src/frozen/frozen.h:217:29: note: Function 'json_vscanf' argument 1 names different: declaration 'str' definition 's'.
+int json_vscanf(const char *str, int str_len, const char *fmt, va_list ap);
+                            ^
+src/frozen/frozen.c:1034:29: note: Function 'json_vscanf' argument 1 names different: declaration 'str' definition 's'.
+int json_vscanf(const char *s, int len, const char *fmt, va_list ap) {
+                            ^
+src/frozen/frozen.c:1034:36: style:inconclusive: Function 'json_vscanf' argument 2 names different: declaration 'str_len' definition 'len'. [funcArgNamesDifferent]
+int json_vscanf(const char *s, int len, const char *fmt, va_list ap) {
+                                   ^
+src/frozen/frozen.h:217:38: note: Function 'json_vscanf' argument 2 names different: declaration 'str_len' definition 'len'.
+int json_vscanf(const char *str, int str_len, const char *fmt, va_list ap);
+                                     ^
+src/frozen/frozen.c:1034:36: note: Function 'json_vscanf' argument 2 names different: declaration 'str_len' definition 'len'.
+int json_vscanf(const char *s, int len, const char *fmt, va_list ap) {
+                                   ^
+src/frozen/frozen.c:1089:37: style:inconclusive: Function 'json_scanf' argument 2 names different: declaration 'str_len' definition 'len'. [funcArgNamesDifferent]
+int json_scanf(const char *str, int len, const char *fmt, ...) {
+                                    ^
+src/frozen/frozen.h:216:37: note: Function 'json_scanf' argument 2 names different: declaration 'str_len' definition 'len'.
+int json_scanf(const char *str, int str_len, const char *fmt, ...);
+                                    ^
+src/frozen/frozen.c:1089:37: note: Function 'json_scanf' argument 2 names different: declaration 'str_len' definition 'len'.
+int json_scanf(const char *str, int len, const char *fmt, ...) {
+                                    ^
+src/frozen/frozen.c:1122:30: style:inconclusive: Function 'json_fread' argument 1 names different: declaration 'file_name' definition 'path'. [funcArgNamesDifferent]
+char *json_fread(const char *path) {
+                             ^
+src/frozen/frozen.h:249:30: note: Function 'json_fread' argument 1 names different: declaration 'file_name' definition 'path'.
+char *json_fread(const char *file_name);
+                             ^
+src/frozen/frozen.c:1122:30: note: Function 'json_fread' argument 1 names different: declaration 'file_name' definition 'path'.
+char *json_fread(const char *path) {
+                             ^
+src/frozen/frozen.c:935:15: style: union member 'Anonymous3::p' is never used. [unusedStructMember]
+        void *p;
+              ^
+src/frozen/frozen.c:561:3: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+  va_copy(ap, xap);
+  ^
+src/frozen/frozen.c:572:30: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        int64_t val = va_arg(ap, int64_t);
+                             ^
+src/frozen/frozen.c:578:29: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        size_t val = va_arg(ap, size_t);
+                            ^
+src/frozen/frozen.c:583:43: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        json_printf_callback_t f = va_arg(ap, json_printf_callback_t);
+                                          ^
+src/frozen/frozen.c:584:24: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        len += f(out, &ap);
+                       ^
+src/frozen/frozen.c:586:26: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        int val = va_arg(ap, int);
+                         ^
+src/frozen/frozen.c:592:27: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        int i, n = va_arg(ap, int);
+                          ^
+src/frozen/frozen.c:593:41: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        const unsigned char *p = va_arg(ap, const unsigned char *);
+                                        ^
+src/frozen/frozen.c:603:41: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        const unsigned char *p = va_arg(ap, const unsigned char *);
+                                        ^
+src/frozen/frozen.c:604:24: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        int n = va_arg(ap, int);
+                       ^
+src/frozen/frozen.c:615:31: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+          l = (size_t) va_arg(ap, int);
+                              ^
+src/frozen/frozen.c:618:20: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        p = va_arg(ap, char *);
+                   ^
+src/frozen/frozen.c:652:9: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+        va_copy(ap_copy, ap);
+        ^
+src/frozen/frozen.c:676:13: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+            va_copy(ap_copy, ap);
+            ^
+src/frozen/frozen.c:694:25: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+          (void) va_arg(ap, int64_t);
+                        ^
+src/frozen/frozen.c:696:25: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+          (void) va_arg(ap, int);
+                        ^
+src/frozen/frozen.c:697:25: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+          (void) va_arg(ap, char *);
+                        ^
+src/frozen/frozen.c:702:29: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+              (void) va_arg(ap, int);
+                            ^
+src/frozen/frozen.c:739:3: error: va_list 'ap' used before va_start() was called. [va_list_usedBeforeStarted]
+  va_end(ap);
+  ^
+src/frozen/frozen.c:652:9: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+        va_copy(ap_copy, ap);
+        ^
+src/frozen/frozen.c:653:48: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+        need_len = vsnprintf(pbuf, size, fmt2, ap_copy);
+                                               ^
+src/frozen/frozen.c:654:9: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+        va_end(ap_copy);
+        ^
+src/frozen/frozen.c:676:13: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+            va_copy(ap_copy, ap);
+            ^
+src/frozen/frozen.c:677:49: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+            vsnprintf(pbuf, need_len + 1, fmt2, ap_copy);
+                                                ^
+src/frozen/frozen.c:678:13: error: va_list 'ap_copy' used before va_start() was called. [va_list_usedBeforeStarted]
+            va_end(ap_copy);
+            ^
+src/frozen/frozen.c:437:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_escape(struct json_out *out, const char *p, size_t len) WEAK;
+^
+src/frozen/frozen.c:466:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_printer_buf(struct json_out *out, const char *buf, size_t len) WEAK;
+^
+src/frozen/frozen.c:480:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_printer_file(struct json_out *out, const char *buf, size_t len) WEAK;
+^
+src/frozen/frozen.c:556:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_vprintf(struct json_out *out, const char *fmt, va_list xap) WEAK;
+^
+src/frozen/frozen.c:744:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_printf(struct json_out *out, const char *fmt, ...) WEAK;
+^
+src/frozen/frozen.c:754:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_printf_array(struct json_out *out, va_list *ap) WEAK;
+^
+src/frozen/frozen.c:804:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+              json_walk_callback_t callback, void *callback_data) WEAK;
+^
+src/frozen/frozen.c:841:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+                          struct json_token *token) WEAK;
+^
+src/frozen/frozen.c:862:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_unescape(const char *src, int slen, char *dst, int dlen) WEAK;
+^
+src/frozen/frozen.c:1033:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_vscanf(const char *s, int len, const char *fmt, va_list ap) WEAK;
+^
+src/frozen/frozen.c:1088:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_scanf(const char *str, int len, const char *fmt, ...) WEAK;
+^
+src/frozen/frozen.c:1098:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_vfprintf(const char *file_name, const char *fmt, va_list ap) WEAK;
+^
+src/frozen/frozen.c:1111:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_fprintf(const char *file_name, const char *fmt, ...) WEAK;
+^
+src/frozen/frozen.c:1121:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+char *json_fread(const char *path) WEAK;
+^
+src/frozen/frozen.c:1202:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+               const char *json_path, const char *json_fmt, va_list ap) WEAK;
+^
+src/frozen/frozen.c:1259:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+              const char *json_path, const char *json_fmt, ...) WEAK;
+^
+src/frozen/frozen.c:1335:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_prettify(const char *s, int len, struct json_out *out) WEAK;
+^
+src/frozen/frozen.c:1341:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_prettify_file(const char *file_name) WEAK;
+^
+src/frozen/frozen.c:1426:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+                    struct json_token *key, struct json_token *val) WEAK;
+^
+src/frozen/frozen.c:1433:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+                     int *idx, struct json_token *val) WEAK;
+^
+src/frozen/frozen.c:1451:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+char *json_vasprintf(const char *fmt, va_list ap) WEAK;
+^
+src/frozen/frozen.c:1460:0: information: Skipping configuration 'WEAK' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+char *json_asprintf(const char *fmt, ...) WEAK;
+^
+src/frozen/frozen.c:437:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_escape(struct json_out *out, const char *p, size_t len) WEAK;
+^
+src/frozen/frozen.c:466:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_printer_buf(struct json_out *out, const char *buf, size_t len) WEAK;
+^
+src/frozen/frozen.c:480:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_printer_file(struct json_out *out, const char *buf, size_t len) WEAK;
+^
+src/frozen/frozen.c:556:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_vprintf(struct json_out *out, const char *fmt, va_list xap) WEAK;
+^
+src/frozen/frozen.c:744:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_printf(struct json_out *out, const char *fmt, ...) WEAK;
+^
+src/frozen/frozen.c:754:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_printf_array(struct json_out *out, va_list *ap) WEAK;
+^
+src/frozen/frozen.c:782:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+                     va_list ap) WEAK;
+^
+src/frozen/frozen.c:792:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int cs_win_snprintf(char *str, size_t size, const char *format, ...) WEAK;
+^
+src/frozen/frozen.c:804:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+              json_walk_callback_t callback, void *callback_data) WEAK;
+^
+src/frozen/frozen.c:841:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+                          struct json_token *token) WEAK;
+^
+src/frozen/frozen.c:862:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_unescape(const char *src, int slen, char *dst, int dlen) WEAK;
+^
+src/frozen/frozen.c:1033:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_vscanf(const char *s, int len, const char *fmt, va_list ap) WEAK;
+^
+src/frozen/frozen.c:1088:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_scanf(const char *str, int len, const char *fmt, ...) WEAK;
+^
+src/frozen/frozen.c:1098:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_vfprintf(const char *file_name, const char *fmt, va_list ap) WEAK;
+^
+src/frozen/frozen.c:1111:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_fprintf(const char *file_name, const char *fmt, ...) WEAK;
+^
+src/frozen/frozen.c:1121:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+char *json_fread(const char *path) WEAK;
+^
+src/frozen/frozen.c:1202:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+               const char *json_path, const char *json_fmt, va_list ap) WEAK;
+^
+src/frozen/frozen.c:1259:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+              const char *json_path, const char *json_fmt, ...) WEAK;
+^
+src/frozen/frozen.c:1335:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_prettify(const char *s, int len, struct json_out *out) WEAK;
+^
+src/frozen/frozen.c:1341:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+int json_prettify_file(const char *file_name) WEAK;
+^
+src/frozen/frozen.c:1426:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+                    struct json_token *key, struct json_token *val) WEAK;
+^
+src/frozen/frozen.c:1433:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+                     int *idx, struct json_token *val) WEAK;
+^
+src/frozen/frozen.c:1451:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+char *json_vasprintf(const char *fmt, va_list ap) WEAK;
+^
+src/frozen/frozen.c:1460:0: information: Skipping configuration 'WEAK;_WIN32;__GNUC__;__TI_COMPILER_VERSION__' since the value of 'WEAK' is unknown. Use -D if you want to check it. You can use -U to skip it explicitly. [ConfigurationNotChecked]
+char *json_asprintf(const char *fmt, ...) WEAK;
+^
+src/frozen/frozen.c:935:15: style: union member 'Anonymous4::p' is never used. [unusedStructMember]
+        void *p;
+              ^
+src/mjs_array.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_array.c:71:59: style:inconclusive: Function 'mjs_array_length' argument 2 names different: declaration 'arr' definition 'v'. [funcArgNamesDifferent]
+unsigned long mjs_array_length(struct mjs *mjs, mjs_val_t v) {
+                                                          ^
+src/mjs_array_public.h:23:59: note: Function 'mjs_array_length' argument 2 names different: declaration 'arr' definition 'v'.
+unsigned long mjs_array_length(struct mjs *mjs, mjs_val_t arr);
+                                                          ^
+src/mjs_array.c:71:59: note: Function 'mjs_array_length' argument 2 names different: declaration 'arr' definition 'v'.
+unsigned long mjs_array_length(struct mjs *mjs, mjs_val_t v) {
+                                                          ^
+src/mjs_array.c:26:16: error: va_list 'ap' was opened but not closed by va_end(). [va_end_missing]
+    return size;
+               ^
+src/mjs_bcode.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_builtin.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_conversion.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_core.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_core.c:324:40: style:inconclusive: Function 'mjs_arg' argument 2 names different: declaration 'n' definition 'arg_index'. [funcArgNamesDifferent]
+mjs_val_t mjs_arg(struct mjs *mjs, int arg_index) {
+                                       ^
+src/mjs_core_public.h:223:40: note: Function 'mjs_arg' argument 2 names different: declaration 'n' definition 'arg_index'.
+mjs_val_t mjs_arg(struct mjs *mjs, int n);
+                                       ^
+src/mjs_core.c:324:40: note: Function 'mjs_arg' argument 2 names different: declaration 'n' definition 'arg_index'.
+mjs_val_t mjs_arg(struct mjs *mjs, int arg_index) {
+                                       ^
+src/mjs_dataview.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_exec.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 16 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_exec.c:509:7: style: The scope of the variable 'i' can be reduced. [variableScope]
+  int i, nargs = 0;
+      ^
+src/mjs_exec.c:908:21: style: Local variable 'off' shadows outer argument [shadowArgument]
+        int l1, l2, off = cs_varint_decode_unsafe(&code[i + 1], &l1);
+                    ^
+src/mjs_exec.c:550:59: note: Shadowed declaration
+MJS_PRIVATE mjs_err_t mjs_execute(struct mjs *mjs, size_t off, mjs_val_t *res) {
+                                                          ^
+src/mjs_exec.c:908:21: note: Shadow variable
+        int l1, l2, off = cs_varint_decode_unsafe(&code[i + 1], &l1);
+                    ^
+src/mjs_exec.c:928:18: style: Local variable 'scopes_len' shadows outer variable [shadowVariable]
+          size_t scopes_len = mjs_get_int(mjs, *vptr(&mjs->loop_addresses, -3));
+                 ^
+src/mjs_exec.c:561:7: note: Shadowed declaration
+  int scopes_len = mjs->scopes.len;
+      ^
+src/mjs_exec.c:928:18: note: Shadow variable
+          size_t scopes_len = mjs_get_int(mjs, *vptr(&mjs->loop_addresses, -3));
+                 ^
+src/mjs_exec.c:940:18: style: Local variable 'scopes_len' shadows outer variable [shadowVariable]
+          size_t scopes_len;
+                 ^
+src/mjs_exec.c:561:7: note: Shadowed declaration
+  int scopes_len = mjs->scopes.len;
+      ^
+src/mjs_exec.c:940:18: note: Shadow variable
+          size_t scopes_len;
+                 ^
+src/mjs_exec.c:552:23: style: Variable 'prev_opcode' is assigned a value that is never used. [unreadVariable]
+  uint8_t prev_opcode = OP_MAX;
+                      ^
+src/mjs_exec.c:779:16: style: Variable 'code' is assigned a value that is never used. [unreadVariable]
+          code = (const uint8_t *) bp.data.p;
+               ^
+src/mjs_exec.c:833:16: style: Variable 'code' is assigned a value that is never used. [unreadVariable]
+          code = (const uint8_t *) bp.data.p;
+               ^
+src/mjs_ffi.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_ffi.c:1171:39: style:inconclusive: Function 'dlsym' argument 2 names different: declaration 'symbol' definition 'name'. [funcArgNamesDifferent]
+void *dlsym(void *handle, const char *name) {
+                                      ^
+src/mjs_ffi.h:17:0: note: Function 'dlsym' argument 2 names different: declaration 'symbol' definition 'name'.
+mjs_ffi_resolver_t dlsym;
+^
+src/mjs_ffi.c:1171:39: note: Function 'dlsym' argument 2 names different: declaration 'symbol' definition 'name'.
+void *dlsym(void *handle, const char *name) {
+                                      ^
+src/mjs_ffi.c:1161:39: style:inconclusive: Function 'dlsym' argument 2 names different: declaration 'symbol' definition 'name'. [funcArgNamesDifferent]
+void *dlsym(void *handle, const char *name) {
+                                      ^
+src/mjs_ffi.h:17:0: note: Function 'dlsym' argument 2 names different: declaration 'symbol' definition 'name'.
+mjs_ffi_resolver_t dlsym;
+^
+src/mjs_ffi.c:1161:39: note: Function 'dlsym' argument 2 names different: declaration 'symbol' definition 'name'.
+void *dlsym(void *handle, const char *name) {
+                                      ^
+src/mjs_gc.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_gc.c:139:3: warning: Either the condition 'a->free==NULL' is redundant or there is possible null pointer dereference: (struct gc_cell*)(r). [nullPointerRedundantCheck]
+  UNMARK(r);
+  ^
+src/mjs_gc.c:132:15: note: Assuming that condition 'a->free==NULL' is not redundant
+  if (a->free == NULL) {
+              ^
+src/mjs_gc.c:137:8: note: Assignment 'r=a->free', assigned value is 0
+  r = a->free;
+       ^
+src/mjs_gc.c:139:3: note: Null pointer dereference
+  UNMARK(r);
+  ^
+src/mjs_gc.c:141:13: warning: Either the condition 'a->free==NULL' is redundant or there is possible null pointer dereference: r. [nullPointerRedundantCheck]
+  a->free = r->head.link;
+            ^
+src/mjs_gc.c:132:15: note: Assuming that condition 'a->free==NULL' is not redundant
+  if (a->free == NULL) {
+              ^
+src/mjs_gc.c:137:8: note: Assignment 'r=a->free', assigned value is 0
+  r = a->free;
+       ^
+src/mjs_gc.c:141:13: note: Null pointer dereference
+  a->free = r->head.link;
+            ^
+src/mjs_gc.c:157:10: warning: Either the condition 'a->free==NULL' is redundant or there is possible null pointer dereference: r. [nullPointerRedundantCheck]
+  memset(r, 0, a->cell_size);
+         ^
+src/mjs_gc.c:132:15: note: Assuming that condition 'a->free==NULL' is not redundant
+  if (a->free == NULL) {
+              ^
+src/mjs_gc.c:137:8: note: Assignment 'r=a->free', assigned value is 0
+  r = a->free;
+       ^
+src/mjs_gc.c:157:10: note: Null pointer dereference
+  memset(r, 0, a->cell_size);
+         ^
+src/mjs_gc.c:369:54: style:inconclusive: Function 'gc_mark' argument 2 names different: declaration 'val' definition 'v'. [funcArgNamesDifferent]
+MJS_PRIVATE void gc_mark(struct mjs *mjs, mjs_val_t *v) {
+                                                     ^
+src/mjs_gc.h:41:54: note: Function 'gc_mark' argument 2 names different: declaration 'val' definition 'v'.
+MJS_PRIVATE void gc_mark(struct mjs *mjs, mjs_val_t *val);
+                                                     ^
+src/mjs_gc.c:369:54: note: Function 'gc_mark' argument 2 names different: declaration 'val' definition 'v'.
+MJS_PRIVATE void gc_mark(struct mjs *mjs, mjs_val_t *v) {
+                                                     ^
+src/mjs_gc.c:529:68: style:inconclusive: Function 'gc_check_ptr' argument 2 names different: declaration 'p' definition 'ptr'. [funcArgNamesDifferent]
+MJS_PRIVATE int gc_check_ptr(const struct gc_arena *a, const void *ptr) {
+                                                                   ^
+src/mjs_gc.h:54:68: note: Function 'gc_check_ptr' argument 2 names different: declaration 'p' definition 'ptr'.
+MJS_PRIVATE int gc_check_ptr(const struct gc_arena *a, const void *p);
+                                                                   ^
+src/mjs_gc.c:529:68: note: Function 'gc_check_ptr' argument 2 names different: declaration 'p' definition 'ptr'.
+MJS_PRIVATE int gc_check_ptr(const struct gc_arena *a, const void *ptr) {
+                                                                   ^
+src/mjs_json.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_json.c:248:3: style:inconclusive: Statements following return, break, continue, goto or throw will never be executed. [unreachableCode]
+  len = 0; /* for compilers that don't know about abort() */
+  ^
+src/mjs_main.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 16 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_object.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_object.c:209:5: warning: Assignment of function parameter has no effect outside the function. Did you forget dereferencing it? [uselessAssignmentPtrArg]
+    name = NULL;
+    ^
+src/mjs_object.c:329:33: portability: Casting between const signed char * and double * which have an incompatible binary data representation. [invalidPointerCast]
+        v = mjs_mk_number(mjs, *(double *) ptr);
+                                ^
+src/mjs_object.c:333:24: portability: Casting between const signed char * and float * which have an incompatible binary data representation. [invalidPointerCast]
+        float value = *(float *) ptr;
+                       ^
+src/mjs_object.c:148:26: style:inconclusive: Function 'mjs_set' argument 4 names different: declaration 'len' definition 'name_len'. [funcArgNamesDifferent]
+                  size_t name_len, mjs_val_t val) {
+                         ^
+src/mjs_object_public.h:86:76: note: Function 'mjs_set' argument 4 names different: declaration 'len' definition 'name_len'.
+mjs_err_t mjs_set(struct mjs *mjs, mjs_val_t obj, const char *name, size_t len,
+                                                                           ^
+src/mjs_object.c:148:26: note: Function 'mjs_set' argument 4 names different: declaration 'len' definition 'name_len'.
+                  size_t name_len, mjs_val_t val) {
+                         ^
+src/mjs_object.c:284:63: style:inconclusive: Function 'mjs_struct_to_obj' argument 3 names different: declaration 'members' definition 'defs'. [funcArgNamesDifferent]
+                            const struct mjs_c_struct_member *defs) {
+                                                              ^
+src/mjs_object_public.h:61:63: note: Function 'mjs_struct_to_obj' argument 3 names different: declaration 'members' definition 'defs'.
+                            const struct mjs_c_struct_member *members);
+                                                              ^
+src/mjs_object.c:284:63: note: Function 'mjs_struct_to_obj' argument 3 names different: declaration 'members' definition 'defs'.
+                            const struct mjs_c_struct_member *defs) {
+                                                              ^
+src/mjs_parser.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_primitive.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_primitive.c:157:7: style: Redundant initialization for 'ret'. The initialized value is overwritten before it is read. [redundantInitialization]
+  ret = mjs_mk_boolean(mjs, val == MJS_TAG_NAN);
+      ^
+src/mjs_primitive.c:154:17: note: ret is initialized
+  mjs_val_t ret = MJS_UNDEFINED;
+                ^
+src/mjs_primitive.c:157:7: note: ret is overwritten
+  ret = mjs_mk_boolean(mjs, val == MJS_TAG_NAN);
+      ^
+src/mjs_primitive.c:26:49: style:inconclusive: Function 'mjs_mk_number' argument 2 names different: declaration 'num' definition 'v'. [funcArgNamesDifferent]
+mjs_val_t mjs_mk_number(struct mjs *mjs, double v) {
+                                                ^
+src/mjs_primitive_public.h:47:49: note: Function 'mjs_mk_number' argument 2 names different: declaration 'num' definition 'v'.
+mjs_val_t mjs_mk_number(struct mjs *mjs, double num);
+                                                ^
+src/mjs_primitive.c:26:49: note: Function 'mjs_mk_number' argument 2 names different: declaration 'num' definition 'v'.
+mjs_val_t mjs_mk_number(struct mjs *mjs, double v) {
+                                                ^
+src/mjs_primitive.c:125:49: style:inconclusive: Function 'mjs_mk_foreign' argument 2 names different: declaration 'ptr' definition 'p'. [funcArgNamesDifferent]
+mjs_val_t mjs_mk_foreign(struct mjs *mjs, void *p) {
+                                                ^
+src/mjs_primitive_public.h:92:49: note: Function 'mjs_mk_foreign' argument 2 names different: declaration 'ptr' definition 'p'.
+mjs_val_t mjs_mk_foreign(struct mjs *mjs, void *ptr);
+                                                ^
+src/mjs_primitive.c:125:49: note: Function 'mjs_mk_foreign' argument 2 names different: declaration 'ptr' definition 'p'.
+mjs_val_t mjs_mk_foreign(struct mjs *mjs, void *p) {
+                                                ^
+src/mjs_string.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 15 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_string.c:70:8: error: The address of local variable 'offset' is accessed at non-zero index. [objectIndex]
+      s[-1] = len;
+       ^
+src/mjs_string.c:65:17: note: Address of variable taken here.
+      char *s = GET_VAL_NAN_PAYLOAD(offset) + 1;
+                ^
+src/mjs_string.c:70:8: note: The address of local variable 'offset' is accessed at non-zero index.
+      s[-1] = len;
+       ^
+src/mjs_string.c:60:42: warning: Possible null pointer dereference: p [nullPointer]
+  if (len == ~((size_t) 0)) len = strlen(p);
+                                         ^
+src/mjs_string.c:276:28: note: Calling function 'mjs_mk_string', 2nd argument 'NULL' value is 0
+  res = mjs_mk_string(mjs, NULL, a_len + b_len, 1);
+                           ^
+src/mjs_string.c:60:42: note: Null pointer dereference
+  if (len == ~((size_t) 0)) len = strlen(p);
+                                         ^
+src/mjs_string.c:71:11: style: Redundant initialization for 'tag'. The initialized value is overwritten before it is read. [redundantInitialization]
+      tag = MJS_TAG_STRING_I;
+          ^
+src/mjs_string.c:47:25: note: tag is initialized
+  mjs_val_t offset, tag = MJS_TAG_STRING_F;
+                        ^
+src/mjs_string.c:71:11: note: tag is overwritten
+      tag = MJS_TAG_STRING_I;
+          ^
+src/mjs_string.c:279:9: style: Variable 'a_ptr' is reassigned a value before the old one has been used. [redundantAssignment]
+  a_ptr = mjs_get_string(mjs, &a, &a_len);
+        ^
+src/mjs_string.c:272:9: note: a_ptr is assigned
+  a_ptr = mjs_get_string(mjs, &a, &a_len);
+        ^
+src/mjs_string.c:279:9: note: a_ptr is overwritten
+  a_ptr = mjs_get_string(mjs, &a, &a_len);
+        ^
+src/mjs_string.c:280:9: style: Variable 'b_ptr' is reassigned a value before the old one has been used. [redundantAssignment]
+  b_ptr = mjs_get_string(mjs, &b, &b_len);
+        ^
+src/mjs_string.c:273:9: note: b_ptr is assigned
+  b_ptr = mjs_get_string(mjs, &b, &b_len);
+        ^
+src/mjs_string.c:280:9: note: b_ptr is overwritten
+  b_ptr = mjs_get_string(mjs, &b, &b_len);
+        ^
+src/mjs_string.c:45:54: style:inconclusive: Function 'mjs_mk_string' argument 2 names different: declaration 'str' definition 'p'. [funcArgNamesDifferent]
+mjs_val_t mjs_mk_string(struct mjs *mjs, const char *p, size_t len, int copy) {
+                                                     ^
+src/mjs_string_public.h:28:54: note: Function 'mjs_mk_string' argument 2 names different: declaration 'str' definition 'p'.
+mjs_val_t mjs_mk_string(struct mjs *mjs, const char *str, size_t len, int copy);
+                                                     ^
+src/mjs_string.c:45:54: note: Function 'mjs_mk_string' argument 2 names different: declaration 'str' definition 'p'.
+mjs_val_t mjs_mk_string(struct mjs *mjs, const char *p, size_t len, int copy) {
+                                                     ^
+src/mjs_string.c:134:67: style:inconclusive: Function 'mjs_get_string' argument 3 names different: declaration 'len' definition 'sizep'. [funcArgNamesDifferent]
+const char *mjs_get_string(struct mjs *mjs, mjs_val_t *v, size_t *sizep) {
+                                                                  ^
+src/mjs_string_public.h:50:67: note: Function 'mjs_get_string' argument 3 names different: declaration 'len' definition 'sizep'.
+const char *mjs_get_string(struct mjs *mjs, mjs_val_t *v, size_t *len);
+                                                                  ^
+src/mjs_string.c:134:67: note: Function 'mjs_get_string' argument 3 names different: declaration 'len' definition 'sizep'.
+const char *mjs_get_string(struct mjs *mjs, mjs_val_t *v, size_t *sizep) {
+                                                                  ^
+src/mjs_string.c:209:57: style:inconclusive: Function 'mjs_get_cstring' argument 2 names different: declaration 'v' definition 'value'. [funcArgNamesDifferent]
+const char *mjs_get_cstring(struct mjs *mjs, mjs_val_t *value) {
+                                                        ^
+src/mjs_string_public.h:64:57: note: Function 'mjs_get_cstring' argument 2 names different: declaration 'v' definition 'value'.
+const char *mjs_get_cstring(struct mjs *mjs, mjs_val_t *v);
+                                                        ^
+src/mjs_string.c:209:57: note: Function 'mjs_get_cstring' argument 2 names different: declaration 'v' definition 'value'.
+const char *mjs_get_cstring(struct mjs *mjs, mjs_val_t *value) {
+                                                        ^
+src/mjs_string.c:156:14: style: Local variable 'v' shadows outer argument [shadowArgument]
+    uint64_t v = 0;
+             ^
+src/mjs_string.c:134:56: note: Shadowed declaration
+const char *mjs_get_string(struct mjs *mjs, mjs_val_t *v, size_t *sizep) {
+                                                       ^
+src/mjs_string.c:156:14: note: Shadow variable
+    uint64_t v = 0;
+             ^
+src/mjs_string.c:188:16: style: Local variable 'v' shadows outer argument [shadowArgument]
+      uint64_t v = 0;
+               ^
+src/mjs_string.c:134:56: note: Shadowed declaration
+const char *mjs_get_string(struct mjs *mjs, mjs_val_t *v, size_t *sizep) {
+                                                       ^
+src/mjs_string.c:188:16: note: Shadow variable
+      uint64_t v = 0;
+               ^
+src/mjs_util.c:0:0: information: Too many #ifdef configurations - cppcheck only checks 12 of 16 configurations. Use --force to check all configurations. [toomanyconfigs]
+
+^
+src/mjs_util.c:322:9: style: Redundant initialization for 'arg'. The initialized value is overwritten before it is read. [redundantInitialization]
+    arg = mjs_arg(mjs, arg_num);
+        ^
+src/mjs_util.c:312:17: note: arg is initialized
+  mjs_val_t arg = MJS_UNDEFINED;
+                ^
+src/mjs_util.c:322:9: note: arg is overwritten
+    arg = mjs_arg(mjs, arg_num);
+        ^
+src/mjs_util.c:375:7: style: The scope of the variable 'prev_line_no' can be reduced. [variableScope]
+  int prev_line_no, ret = 1;
+      ^
+src/mjs_util.c:377:16: style: The scope of the variable 'pe' can be reduced. [variableScope]
+  uint8_t *p, *pe;
+               ^
+src/mjs_util.c:86:66: style:inconclusive: Function 'mjs_sprintf' argument 4 names different: declaration 'buflen' definition 'n'. [funcArgNamesDifferent]
+void mjs_sprintf(mjs_val_t v, struct mjs *mjs, char *buf, size_t n) {
+                                                                 ^
+src/mjs_util_public.h:19:66: note: Function 'mjs_sprintf' argument 4 names different: declaration 'buflen' definition 'n'.
+void mjs_sprintf(mjs_val_t v, struct mjs *mjs, char *buf, size_t buflen);
+                                                                 ^
+src/mjs_util.c:86:66: note: Function 'mjs_sprintf' argument 4 names different: declaration 'buflen' definition 'n'.
+void mjs_sprintf(mjs_val_t v, struct mjs *mjs, char *buf, size_t n) {
+                                                                 ^
+tests/unit_test.c:287:18: style: The scope of the variable 'dp' can be reduced. [variableScope]
+  struct dirent *dp;
+                 ^
+src/common/platforms/cc3200/cc3200_libc.c:68:0: style: The function 'HOSTtime' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp31/rom/notes.c:141:0: style: The function '_X_slc_init_attach' is never used. [unusedFunction]
+
+^
+src/common/test_util.c:59:0: style: The function '_assert_streq' is never used. [unusedFunction]
+
+^
+src/common/test_util.c:67:0: style: The function '_assert_streq_nz' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs.c:162:0: style: The function '_close' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs.c:215:0: style: The function '_fstat' is never used. [unusedFunction]
+
+^
+src/common/platforms/cc3200/cc3200_libc.c:105:0: style: The function '_getpid' is never used. [unusedFunction]
+
+^
+src/common/platforms/mbed/mbed_libc.c:34:0: style: The function '_gettimeofday' is never used. [unusedFunction]
+
+^
+src/common/platforms/cc3200/cc3200_libc.c:110:0: style: The function '_isatty' is never used. [unusedFunction]
+
+^
+src/common/platforms/cc3200/cc3200_libc.c:98:0: style: The function '_kill' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs.c:190:0: style: The function '_lseek' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs.c:112:0: style: The function '_open' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs.c:248:0: style: The function '_read' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs.c:133:0: style: The function '_stat' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs.c:348:0: style: The function '_unlink' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs.c:282:0: style: The function '_write' is never used. [unusedFunction]
+
+^
+src/common/platforms/wince/wince_libc.c:40:0: style: The function '_wstati64' is never used. [unusedFunction]
+
+^
+src/common/platforms/arm/arm_exc.c:72:0: style: The function 'arm_exc_dump_regs' is never used. [unusedFunction]
+
+^
+src/common/platforms/arm/arm_exc.c:76:0: style: The function 'arm_exc_handler_bottom' is never used. [unusedFunction]
+
+^
+src/common/platforms/cc3200/cc3200_libc.c:42:0: style: The function 'asprintf' is never used. [unusedFunction]
+
+^
+src/common/test_util.c:86:0: style: The function 'c_int_eq' is never used. [unusedFunction]
+
+^
+src/common/test_util.c:82:0: style: The function 'c_int_ne' is never used. [unusedFunction]
+
+^
+src/common/test_util.c:77:0: style: The function 'c_str_ne' is never used. [unusedFunction]
+
+^
+src/common/str_util.c:273:0: style: The function 'c_strnstr' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/rboot/rboot/rboot-stage2a.c:71:0: style: The function 'call_user_start' is never used. [unusedFunction]
+
+^
+src/common/str_util.c:325:0: style: The function 'cs_from_hex' is never used. [unusedFunction]
+
+^
+src/common/cs_dbg.c:125:0: style: The function 'cs_log_set_file' is never used. [unusedFunction]
+
+^
+src/common/cs_dbg.c:131:0: style: The function 'cs_log_set_file_level' is never used. [unusedFunction]
+
+^
+src/common/cs_time.c:62:0: style: The function 'cs_timegm' is never used. [unusedFunction]
+
+^
+src/common/str_util.c:336:0: style: The function 'cs_to64' is never used. [unusedFunction]
+
+^
+src/common/str_util.c:303:0: style: The function 'cs_to_hex' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_umm_malloc.c:111:0: style: The function 'esp_umm_init' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_umm_malloc.c:115:0: style: The function 'esp_umm_oom_cb' is never used. [unusedFunction]
+
+^
+src/ffi/ffi.c:21:0: style: The function 'ffi_set_bool' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs_slfs.c:256:0: style: The function 'fs_slfs_rename' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs_slfs.c:289:0: style: The function 'fs_slfs_set_file_flags' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs_slfs.c:284:0: style: The function 'fs_slfs_set_file_size' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs_slfs.c:295:0: style: The function 'fs_slfs_unset_file_flags' is never used. [unusedFunction]
+
+^
+src/common/platforms/mbed/mbed_libc.c:45:0: style: The function 'inet_addr' is never used. [unusedFunction]
+
+^
+src/common/platforms/mbed/mbed_libc.c:40:0: style: The function 'inet_aton' is never used. [unusedFunction]
+
+^
+src/frozen/frozen.c:1461:0: style: The function 'json_asprintf' is never used. [unusedFunction]
+
+^
+src/frozen/frozen.c:1112:0: style: The function 'json_fprintf' is never used. [unusedFunction]
+
+^
+src/frozen/frozen.c:1434:0: style: The function 'json_next_elem' is never used. [unusedFunction]
+
+^
+src/frozen/frozen.c:1427:0: style: The function 'json_next_key' is never used. [unusedFunction]
+
+^
+src/frozen/frozen.c:1342:0: style: The function 'json_prettify_file' is never used. [unusedFunction]
+
+^
+src/frozen/frozen.c:755:0: style: The function 'json_printf_array' is never used. [unusedFunction]
+
+^
+src/frozen/frozen.c:1089:0: style: The function 'json_scanf' is never used. [unusedFunction]
+
+^
+src/frozen/frozen.c:842:0: style: The function 'json_scanf_array_elem' is never used. [unusedFunction]
+
+^
+src/frozen/frozen.c:1260:0: style: The function 'json_setf' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp32/stubs/led.c:36:0: style: The function 'led_off' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp32/stubs/led.c:28:0: style: The function 'led_on' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp32/stubs/led.c:20:0: style: The function 'led_setup' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp32/stubs/led.c:44:0: style: The function 'led_toggle' is never used. [unusedFunction]
+
+^
+src/common/mbuf.c:117:0: style: The function 'mbuf_append_and_free' is never used. [unusedFunction]
+
+^
+src/common/mbuf.c:141:0: style: The function 'mbuf_clear' is never used. [unusedFunction]
+
+^
+src/common/mbuf.c:146:0: style: The function 'mbuf_move' is never used. [unusedFunction]
+
+^
+src/common/mbuf.c:133:0: style: The function 'mbuf_remove' is never used. [unusedFunction]
+
+^
+src/common/str_util.c:369:0: style: The function 'mg_casecmp' is never used. [unusedFunction]
+
+^
+src/common/platforms/wince/wince_libc.c:69:0: style: The function 'mg_gmt_time_string' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_crypto.c:37:0: style: The function 'mg_hash_md5_v' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_crypto.c:43:0: style: The function 'mg_hash_sha1_v' is never used. [unusedFunction]
+
+^
+src/common/str_util.c:525:0: style: The function 'mg_match_prefix' is never used. [unusedFunction]
+
+^
+src/common/str_util.c:434:0: style: The function 'mg_next_comma_list_entry' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_mg_task.c:46:0: style: The function 'mg_run_in_task' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_mg_task.c:18:0: style: The function 'mg_start_task' is never used. [unusedFunction]
+
+^
+src/common/mg_str.c:125:0: style: The function 'mg_strcasecmp' is never used. [unusedFunction]
+
+^
+src/common/mg_str.c:77:0: style: The function 'mg_strdup' is never used. [unusedFunction]
+
+^
+src/common/mg_str.c:82:0: style: The function 'mg_strdup_nul' is never used. [unusedFunction]
+
+^
+src/common/mg_str.c:140:0: style: The function 'mg_strfree' is never used. [unusedFunction]
+
+^
+src/common/mg_str.c:111:0: style: The function 'mg_strncmp' is never used. [unusedFunction]
+
+^
+src/common/mg_str.c:162:0: style: The function 'mg_strstrip' is never used. [unusedFunction]
+
+^
+src/common/platforms/arm/arm_nsleep100.c:28:0: style: The function 'mgos_nsleep100_cal' is never used. [unusedFunction]
+
+^
+src/mjs_primitive.c:67:0: style: The function 'mjs_get_int32' is never used. [unusedFunction]
+
+^
+src/mjs_util.c:416:0: style: The function 'mjs_get_offset_by_call_frame_num' is never used. [unusedFunction]
+
+^
+src/mjs_dataview.c:24:0: style: The function 'mjs_mem_get_dbl' is never used. [unusedFunction]
+
+^
+src/mjs_dataview.c:30:0: style: The function 'mjs_mem_set_dbl' is never used. [unusedFunction]
+
+^
+src/mjs_dataview.c:20:0: style: The function 'mjs_mem_set_ptr' is never used. [unusedFunction]
+
+^
+src/common/test_util.c:90:0: style: The function 'poll_until' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_umm_malloc.c:71:0: style: The function 'pvPortCalloc' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_umm_malloc.c:64:0: style: The function 'pvPortMalloc' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_umm_malloc.c:89:0: style: The function 'pvPortRealloc' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_umm_malloc.c:78:0: style: The function 'pvPortZalloc' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/rboot/rboot/appcode/rboot-api.c:67:0: style: The function 'rboot_get_current_rom' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/rboot/rboot/appcode/rboot-api.c:74:0: style: The function 'rboot_set_current_rom' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/rboot/rboot/appcode/rboot-api.c:95:0: style: The function 'rboot_write_flash' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/rboot/rboot/appcode/rboot-api.c:83:0: style: The function 'rboot_write_init' is never used. [unusedFunction]
+
+^
+src/common/platforms/windows/windows_direct.c:20:0: style: The function 'rmdir' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_fs.c:405:0: style: The function 'sl_fs_init' is never used. [unusedFunction]
+
+^
+src/common/platforms/simplelink/sl_net_if.c:379:0: style: The function 'sl_restart_cb' is never used. [unusedFunction]
+
+^
+src/common/platforms/windows/windows_direct.c:24:0: style: The function 'sleep' is never used. [unusedFunction]
+
+^
+src/common/platforms/wince/wince_libc.c:20:0: style: The function 'strerror' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp/stub_flasher.c:573:0: style: The function 'stub_main' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_umm_malloc.c:96:0: style: The function 'vPortFree' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_umm_malloc.c:103:0: style: The function 'xPortGetFreeHeapSize' is never used. [unusedFunction]
+
+^
+src/common/platforms/esp8266/esp_umm_malloc.c:107:0: style: The function 'xPortWantedSizeAlign' is never used. [unusedFunction]
+
+^
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]
+
